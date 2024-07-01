@@ -1,0 +1,232 @@
+.nc-MainNav1 {
+  &.notOnTop {
+    @apply bg-white dark:bg-neutral-900 backdrop-blur-2xl bg-opacity-70 dark:bg-opacity-60 shadow-sm dark:border-b dark:border-neutral-700;
+  }
+}
+
+.menu-item.menu-megamenu:hover {
+  > .sub-menu {
+    @apply visible;
+  }
+}
+
+html.dismiss_top_banner {
+  .Ncmaz_Banner {
+    @apply hidden;
+  }
+}
+
+.main-header .header-menu {
+  margin-left: 20px !important;
+}
+
+.main-header .header-menu * {
+  color: #000 !important;
+  text-transform: uppercase;
+}
+
+.main-header .header-menu a:hover {
+  color: #000 !important;
+  background-color: unset !important;
+  border-radius: none !important;
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+}
+
+.main-header .header-subscribe {
+  font-size: 12px !important;
+}
+
+.main-header .header-subscribe:hover {
+  transition: all .3s;
+}
+
+.btn-login-header {
+  color: #000;
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 12px;
+  display: block !important;
+}
+
+// --------------------------------------
+
+footer *{
+  color: #fff !important;
+}
+
+footer .menu-footer ul{
+  display: none;
+}
+
+footer .menu-footer a {
+  text-decoration: none;
+  font-size: 16px !important;
+}
+
+footer .menu-footer a:hover {
+  text-decoration: underline;
+}
+
+.brand-footer-image {
+  width: 150px;
+  margin-top: 30px;
+}
+
+.footer-intro-txt p{
+  margin-top: 20px;
+}
+
+.legal-menu-footer {
+  flex-wrap: wrap;
+}
+
+.legal-menu-footer a{
+  text-decoration: none;
+}
+
+.legal-menu-footer a:hover {
+  text-decoration: underline;
+}
+
+footer button.cookie-choices {
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #fff;
+  background-color: unset;
+  border-radius: 0;
+}
+
+footer button.cookie-choices:hover {
+  background-color: #D4D4D4;
+  color: #000 !important;
+}
+
+
+// ------------------------------------------
+
+.page-category-banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.page-category-banner button {
+  position: absolute;
+  bottom: 50px;
+  text-transform: uppercase;
+  font-size: 32px;
+  background-color: #000;
+  border-radius: 0;
+  padding: 20px 40px;
+  cursor: text;
+}
+
+.page-category-banner img.mobile {
+  display: none;
+}
+
+.page-category-banner button:hover {
+  background-color: #000;
+}
+
+.banner-section {
+  background-color: #E5E5E5;
+}
+
+.sub-category-title {
+  font-size: 84px;
+  margin: 70px 0 60px;
+  text-transform: uppercase;
+}
+
+.curated-section h2{
+  font-size: 84px;
+  line-height: 1.2em;
+}
+
+.text-hover-effect:hover {
+  opacity: .6;
+  transition: all .3s;
+}
+
+.curated-section .curated-main-image h3{
+  font-size: 56px;
+  line-height: 1.2em;
+}
+
+.curated-posts span {
+  font-size: 20px;
+  line-height: 1.3em;
+}
+
+hr {
+  height: 0.15rem;
+}
+
+.sidebar-menu {
+  max-width: 320px;
+}
+
+.sidebar-search {
+  border-bottom: 1px solid #414141;
+}
+
+.sidebar-search input::placeholder {
+  color: #000;
+  font-size: 16px;
+}
+
+@media (max-width: 980px) {
+  .page-category-banner {
+    min-height: 200px;
+  }
+
+  .page-category-banner img {
+    display: none;
+  }
+
+  .page-category-banner img.mobile {
+    display: block;
+  }
+
+  .curated-section h2{
+    font-size: 64px;
+    line-height: 1em;
+  }
+
+  .curated-section .curated-main-image h3{
+    font-size: 40px;
+    line-height: 1em;
+  }
+
+  .curated-posts span {
+    font-size: 16px;
+  }
+
+  .sub-category-title {
+    font-size: 64px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .btn-login-header {
+    margin-left: 10px;
+  }
+
+  .sub-category-title {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-header .header-subscribe {
+    font-size: 10px !important;
+  }
+
+  img[alt="Logo"] {
+    max-width: 70%;
+  }
+}

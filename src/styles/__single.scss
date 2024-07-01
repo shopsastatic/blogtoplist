@@ -1,0 +1,103 @@
+#single-entry-content {
+  :where(h2, h3, h4):not(:where([class~="not-prose"] *)) {
+    @apply scroll-mt-10 lg:scroll-mt-24;
+  }
+
+  iframe {
+    @apply max-w-full;
+  }
+}
+
+.not-prose {
+  @apply text-base font-normal text-neutral-900 dark:text-neutral-100;
+}
+
+.product-overview {
+  width: fit-content;
+}
+
+.product-index {
+  font-size: 70px;
+}
+
+.product-overview button {
+  background-color: #00767A;
+  padding: 10px 25px;
+  font-weight: 600;
+}
+
+.product-review-layout.container {
+  max-width: 1300px;
+  font-family: Inter,Sans-serif;
+}
+
+.product-review-layout.container {
+  max-width: 62rem;
+}
+
+.product-review-layout span {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nc-PageSingle {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.product-pros-cons {
+  font-family: Inter,Sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: #d4d4d4ff;
+}
+
+.product-pros-cons li p {
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+.product-pros p:first-child, .product-cons p:first-child{
+  font-family: Inter,Sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pros-cons-icon {
+  margin-top: 0.12rem;
+}
+
+.product-pros, .product-cons {
+  border-color: #d4d4d4ff;
+}
+
+.product-review-content {
+    font-family: Merriweather, Georgia, serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-review-content b, .product-review-content strong {
+  font-weight: 600;
+}
+
+.product-review-content a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.product-info .save-now {
+  font-size: 17px;
+  color: #018505;
+  font-weight: 600;
+}
+
+.product-info .brand-name {
+  font-weight: 500;
+}
