@@ -21,7 +21,7 @@ import { FC, useEffect, useState } from 'react'
 interface IArchiveLayoutChildProps {
     parent: any
     name?: string | null
-    initPosts?: PostDataFragmentType[] | null
+    initPosts?: any
     tagDatabaseId?: number | null
     categoryDatabaseId?: number | null,
     taxonomyType: 'tag' | 'category' | 'postFormat'
