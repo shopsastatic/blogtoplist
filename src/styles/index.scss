@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    font-family: Merriweather, Georgia, serif;
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.8;
+    font-family: Inter,Sans-serif;
+}
+
+body, html {
+    scroll-behavior: smooth;
+    scroll-padding: 4rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,13 +15,36 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.015em;
+    margin-top: revert;
+    margin-bottom: 1rem;
 }
 
 .container {
     max-width: 1200px;
     padding: unset;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.container.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.has-text-align-center {
+    text-align: center;
+}
+
+.font-merriweather {
+    font-family: Merriweather, Georgia, serif;
+}
+
+.font-inter {
+    font-family: Inter,Sans-serif;
+}
+
+.font-noto {
+    font-family: Noto Serif Display, Georgia, serif;
 }
 
 @import "react-loading-skeleton/dist/skeleton.css";

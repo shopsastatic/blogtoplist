@@ -21,6 +21,7 @@ import { TCategoryCardFull } from '@/components/CardCategory1/CardCategory1'
 import AuthorLayout from '@/container/AuthorPageLayout'
 import Tab from '@/container/AuthorPageTab'
 import { NC_SITE_SETTINGS } from '@/contains/site-settings'
+import LayoutLineFour from '@/components/LayoutLineFour'
 
 const FILTERS = FILTERS_OPTIONS
 
@@ -40,6 +41,8 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 		posts: (posts?.nodes || []) as TPostCard[],
 	})
 	//
+
+	console.log(user)
 
 	const {
 		currentPosts,
@@ -67,41 +70,19 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 					props.data?.generalSettings as NcgeneralSettingsFieldsFragmentFragment
 				}
 			>
-				<AuthorLayout user={user || {}}>
-					<div className="container space-y-16 py-16 lg:space-y-28 lg:pb-28 lg:pt-20">
-						<main>
-							{/* TABS FILTER */}
-							<div className="flex flex-col border-neutral-200 sm:flex-row sm:items-center sm:justify-between sm:border-b dark:border-neutral-600">
-								<Tab currentTab="" />
+				<div className="section-white flex items-center justify-center">
+					<img src="https://tpc.googlesyndication.com/simgad/5691605194776125024" alt="" />
+				</div>
+				<div className='container my-10'>
+					<img className='m-auto max-w-32 rounded-full' src={user?.ncUserMeta?.backgroundImage?.node?.sourceUrl} alt="" />
+					<h2 className='text-center uppercase my-5 !text-3xl'>{user?.name}</h2>
+					<p className='text-center font-semibold'>{user?.ncUserMeta?.ncBio}</p>
+					<span className='block text-center mt-5 font-light font-merriweather'>{user?.description}</span>
+				</div>
 
-								<div className="mb-4 block w-full border-b border-neutral-300 sm:hidden dark:border-neutral-500"></div>
-								<div className="flex justify-end">
-									<ArchiveFilterListBox
-										lists={FILTERS}
-										onChange={handleChangeFilterPosts}
-									/>
-								</div>
-							</div>
-
-							<GridPostsArchive
-								posts={currentPosts}
-								loading={loading}
-								showLoadmore={hasNextPage}
-								onClickLoadmore={handleClickShowMore}
-							/>
-						</main>
-
-						{/* === SECTION 5 === */}
-						{NC_SITE_SETTINGS.author_page?.show_top_categories && (
-							<SectionTrendingTopic categories={_top10Categories} />
-						)}
-
-						{/* SUBCRIBES */}
-						{NC_SITE_SETTINGS.author_page?.show_newsletter_section && (
-							<SectionSubscribe2 />
-						)}
-					</div>
-				</AuthorLayout>
+				<div className='my-20 container'>
+					<LayoutLineFour data={user?.posts?.nodes}></LayoutLineFour>
+				</div>
 			</PageLayout>
 		</>
 	)

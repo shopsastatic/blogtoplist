@@ -70,7 +70,6 @@ const Component: FaustTemplate<GetPostSiglePageQuery> = (props) => {
   }, []);
 
   const _post = props.data?.post || {}; 
-  console.log(_post)
   const _relatedPosts = (props.data?.posts?.nodes as TPostCard[]) || [];
   const _top10Categories =
     (props.data?.categories?.nodes as TCategoryCardFull[]) || [];

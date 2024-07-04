@@ -8,6 +8,7 @@ import { FaustTemplate, flatListToHierarchical } from "@faustwp/core";
 import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
 import PageLayout from "@/container/PageLayout";
 import MyWordPressBlockViewer from "@/components/MyWordPressBlockViewer";
+import SinglePage from "@/container/singles/SinglePage";
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // LOADING ----------
@@ -16,16 +17,17 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   }
 
   // for this page
-  const { title, editorBlocks, featuredImage, ncPageMeta } =
+  const { title, editorBlocks, featuredImage, ncPageMeta, pageCategory } =
     props.data?.page || {};
 
-  const isGutenbergPage =
-    !!props.__SEED_NODE__?.isFrontPage || ncPageMeta?.isFullWithPage;
+    console.log(pageCategory)
 
   const blocks = flatListToHierarchical(editorBlocks as any, {
     idKey: "clientId",
     parentKey: "parentClientId",
   });
+
+  const pageContent = props.data?.page?.editorBlocks
 
   return (
     <>
@@ -38,29 +40,15 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
           props.data?.generalSettings as NcgeneralSettingsFieldsFragmentFragment
         }
       >
-        <div className="nc-BgGlassmorphism absolute inset-x-0 md:top-10 xl:top-20 min-h-0 pl-20 py-24 flex overflow-hidden z-[-1]">
-          <span className="block bg-[#ef233c] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-10 lg:w-96 lg:h-96"></span>
-          <span className="block bg-[#04868b] w-72 h-72 -ml-20 mt-40 rounded-full mix-blend-multiply filter blur-3xl opacity-10 lg:w-96 lg:h-96 nc-animation-delay-2000"></span>
-        </div>
-        <div
-          className={`container ${
-            isGutenbergPage ? "" : "pb-20 pt-5 sm:pt-10"
-          }`}
-        >
-          <main
-            className={`prose lg:prose-lg dark:prose-invert mx-auto ${
-              isGutenbergPage ? "max-w-none" : ""
-            }`}
-          >
-            {title && !isGutenbergPage && (
-              <>
-                <EntryHeader title={title} />
-                <hr />
-              </>
-            )}
-
-            <MyWordPressBlockViewer blocks={blocks} />
-          </main>
+        <div className="section-white"></div>
+        <div className={`nc-PageSingle pt-8 lg:pt-16`}>
+          <header className="rounded-xl">
+            <div
+              className="max-w-screen-md mx-auto"
+            >
+              <SinglePage page={{ ... props?.data?.page }} />
+            </div>
+          </header>
         </div>
       </PageLayout>
     </>
@@ -81,6 +69,15 @@ Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
+      pageCategory {
+        ... on PageCategory {
+          edges {
+            node {
+              name
+            }
+          }
+        }
+      }
       ncPageMeta {
         isFullWithPage
       }

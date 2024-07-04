@@ -324,7 +324,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 		return (
 			<div className="nc-menu-lv1 flex h-20 flex-shrink-0 items-center">
 				<ItemC
-					className="relative inline-flex cursor-pointer items-center rounded-xl px-4 py-2.5 text-sm font-medium text-neutral-700 dark:text-neutral-300"
+					className="relative inline-flex cursor-pointer items-center rounded-xl px-4 py-2.5 text-xs font-medium text-neutral-700 dark:text-neutral-300"
 					href={isLink ? item.uri || '' : ''}
 				>
 					{item.label}

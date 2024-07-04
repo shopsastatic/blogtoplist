@@ -8,6 +8,7 @@ import MyImage from "@/components/MyImage";
 import SocialsShareDropdown from "@/components/SocialsShareDropdown/SocialsShareDropdown";
 import PageLayout from "@/container/PageLayout";
 import ArchiveLayout from "@/container/archives/ArchiveLayout";
+import ArchiveLayoutChild from "@/container/archives/ArchiveLayoutChild";
 import { GET_POSTS_FIRST_COMMON } from "@/contains/contants";
 import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
 import { PostDataFragmentType } from "@/data/types";
@@ -15,6 +16,7 @@ import { getCatgoryDataFromCategoryFragment } from "@/utils/getCatgoryDataFromCa
 import { getImageDataFromImageFragment } from "@/utils/getImageDataFromImageFragment";
 import { FaustTemplate } from "@faustwp/core";
 import { FireIcon, FolderIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const Category: FaustTemplate<PageCategoryGetCategoryQuery> = (props) => {
   // LOADING ----------
@@ -34,9 +36,37 @@ const Category: FaustTemplate<PageCategoryGetCategoryQuery> = (props) => {
     name,
     ncTaxonomyMeta,
     featuredImageMeta,
+    categorylayout,
+    parent
   } = getCatgoryDataFromCategoryFragment(props.data.category);
-  const initPostsPageInfo = props.data?.category?.posts?.pageInfo;
+
   const posts = props.data?.category?.posts;
+
+  if(parent) {
+    return (
+      <PageLayout
+      headerMenuItems={props.data?.primaryMenuItems?.nodes || []}
+      footerMenuItems={props.data?.footerMenuItems?.nodes || []}
+      pageFeaturedImageUrl={featuredImageMeta?.sourceUrl}
+      pageTitle={"Category " + name}
+      pageDescription={description || ""}
+      generalSettings={
+        props.data?.generalSettings as NcgeneralSettingsFieldsFragmentFragment
+      }
+    >
+      <ArchiveLayoutChild 
+         name={name}
+         parent={parent}
+         initPosts={posts}
+         categoryDatabaseId={databaseId}
+         taxonomyType="category"
+         ncTaxonomyMeta={ncTaxonomyMeta}
+      ></ArchiveLayoutChild>
+    </PageLayout>
+    );
+  } 
+
+  const initPostsPageInfo = props.data?.category?.posts?.pageInfo;
   const _top10Categories =
     (props.data?.categories?.nodes as TCategoryCardFull[]) || [];
 
@@ -58,6 +88,8 @@ const Category: FaustTemplate<PageCategoryGetCategoryQuery> = (props) => {
         categoryDatabaseId={databaseId}
         taxonomyType="category"
         top10Categories={_top10Categories}
+        categorylayout={categorylayout}
+        ncTaxonomyMeta={ncTaxonomyMeta}
       >
         {/* HEADER */}
         <div className="container pt-4 md:pt-10">

@@ -23,7 +23,7 @@ const Badge: FC<BadgeProps> = ({
 	return !!href ? (
 		<Link
 			href={href ?? '/'}
-			className={`transition-colors duration-300 ${CLASSES} ${getColorClass(
+			className={`category-on-top transition-colors duration-300 ${CLASSES} ${getColorClass(
 				color,
 			)}`}
 		>

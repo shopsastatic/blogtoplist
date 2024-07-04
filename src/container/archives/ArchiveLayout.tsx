@@ -4,12 +4,13 @@ import Button from '@/components/Button/Button'
 import { TPostCard } from '@/components/Card2/Card2'
 import { CommonTermCardProps, TCategoryCardFull } from '@/components/CardCategory1/CardCategory1'
 import GridPostsArchive from '@/components/GridPostsArchive'
+import LayoutHalfFour from '@/components/LayoutHalfFour'
+import LayoutSliceThree from '@/components/LayoutSliceThree'
 import { FILTERS_OPTIONS } from '@/contains/contants'
 import { NC_SITE_SETTINGS } from '@/contains/site-settings'
 import { PostDataFragmentType } from '@/data/types'
 import useGetPostsNcmazMetaByIds from '@/hooks/useGetPostsNcmazMetaByIds'
 import useHandleGetPostsArchivePage from '@/hooks/useHandleGetPostsArchivePage'
-import { GET_CUSTOM_CATEGORIES } from '@/utils/getCatgoryDataFromCategoryFragment'
 import { FaustTemplate } from '@faustwp/core'
 import { init } from '@graphql-codegen/cli'
 import dynamic from 'next/dynamic'
@@ -27,7 +28,9 @@ interface IArchiveLayoutProps {
 	tagDatabaseId?: number | null
 	categoryDatabaseId?: number | null,
 	taxonomyType: 'tag' | 'category' | 'postFormat'
-	top10Categories: TCategoryCardFull[] | null,
+	top10Categories: TCategoryCardFull[] | null
+	categorylayout: any
+	ncTaxonomyMeta: any
 }
 
 
@@ -40,6 +43,8 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	categoryDatabaseId,
 	taxonomyType,
 	top10Categories,
+	categorylayout,
+	ncTaxonomyMeta
 }) => {
 	// START ----------
 	//
@@ -50,9 +55,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	
 	//
 	
-	const { error, data } = GET_CUSTOM_CATEGORIES(categoryDatabaseId);
 	let featuredImage = ''
-	let acfCategoryData = []
 	let category1 = []
 	let category2 = []
 	let category3 = []
@@ -60,18 +63,17 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	let category5 = []
 	let post1 = {}
 
-	if(data) {
-		acfCategoryData = data.category
-		featuredImage = acfCategoryData?.ncTaxonomyMeta?.featuredImage?.node?.sourceUrl ?? ""
+	if(categorylayout) {
+		featuredImage = ncTaxonomyMeta?.featuredImage?.node?.sourceUrl ?? ""
 
-		post1 = acfCategoryData?.categorylayout?.postTemp1?.nodes[0]
+		post1 = categorylayout?.postTemp1?.nodes[0]
 
-		category1 = acfCategoryData.categorylayout.subCategory1?.nodes[0]
-		category2 = acfCategoryData.categorylayout.subCategory2?.nodes[0]
-		category3 = acfCategoryData.categorylayout.subCategory3?.nodes[0]
-		category4 = acfCategoryData.categorylayout.subCategory4?.nodes[0]
-		category5 = acfCategoryData.categorylayout.subCategory5?.nodes[0]
-		
+		category1 = categorylayout.subCategory1?.nodes[0]
+		category2 = categorylayout.subCategory2?.nodes[0]
+		category3 = categorylayout.subCategory3?.nodes[0]
+		category4 = categorylayout.subCategory4?.nodes[0]
+		category5 = categorylayout.subCategory5?.nodes[0]
+
 	}
 	
 	const {
@@ -87,6 +89,11 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 		categoryDatabaseId,
 	})
 
+	const featuredImageStyle = {
+		backgroundImage: `url(${featuredImage})`,
+		backgroundSize: 'cover',
+	  };
+
 
 	return (
 		<div className="">
@@ -96,9 +103,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 				{/* ====================== END HEADER ====================== */}
 
 				<div className="">
-					<div className='page-category-banner'>
-						<img width={'100%'} src={featuredImage} alt="" />
-						<img width={'100%'} className='mobile' src="https://hips.hearstapps.com/hmg-prod/images/beauty-6517195948cdd.jpg?crop=0.421xw:1.00xh;0.0497xw,0&resize=1024:*" alt="" />
+					<div className='page-category-banner' style={featuredImageStyle}>
 						<Button>{name}</Button>
 					</div>
 
@@ -107,7 +112,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 					</div>
 
 					<div className='curated-section bg-black py-10'>
-						<h2 className='text-hover-effect text-white text-center'>{category1?.name}</h2>
+						<Link href={category1?.uri ?? "/"} className='block w-fit m-auto'><h2 className='text-hover-effect text-white text-center'>{category1?.name}</h2></Link>
 						<div className="container grid grid-cols-5 mt-10 gap-5">
 							<div className="curated-main-image col-span-5 md:col-span-3 text-white">
 								<Link href={category1?.posts?.nodes[0]?.uri ?? ""}>
@@ -122,7 +127,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 										{item.featuredImage && item.featuredImage.node && (
 										<img className='col-span-2' src={item.featuredImage.node.sourceUrl} alt="" />
 										)}
-										<span className='text-hover-effect col-span-4'>{item.title}</span>
+										<span className='text-hover-effect col-span-4 font-merriweather'>{item.title}</span>
 									</div>
 									</Link>
 								))}
@@ -134,7 +139,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 					<div className='container grid grid-cols-1 md:grid-cols-7 gap-10 mt-10 mb-14'>
 							<div className='col-span-1 md:col-span-5 order-2 md:order-1'>
 								<Link href={post1?.uri ?? ""}>
-									<img src={post1?.featuredImage?.node.sourceUrl} alt="" />
+									<img className='m-auto' src={post1?.featuredImage?.node.sourceUrl} alt="" />
 									<h4 className='text-hover-effect text-4xl md:text-5xl text-center mt-14 leading-none'>{post1?.title}</h4>
 								</Link>
 							</div>
@@ -146,13 +151,13 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 					<hr className='my-10 bg-black' />
 
 					<div className='posts-layout-1'>
-						<h4 className='sub-category-title text-hover-effect text-center'>{category2?.name}</h4>
+						<Link href={category2?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category2?.name}</h4></Link>
 						<div className='container grid grid-cols-4 gap-7 mt-10'>
 							{category2?.posts?.nodes.map((item: any, index: number) => (
 								<div className='col-span-2 md:col-span-1' key={index}>
 									<Link href={item.uri}>
 										<img src={item.featuredImage?.node.sourceUrl} alt="" />
-										<span className='block text-xl text-center mt-3'>{item?.title}</span>
+										<span className='block text-md font-merriweather text-center mt-3'>{item?.title}</span>
 									</Link>
 								</div>
 							))}
@@ -166,25 +171,15 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 					<hr className='my-10 bg-black' />
 
 					<div className='posts-layout-2'>
-						<h4 className='sub-category-title text-hover-effect text-center'>{category3?.name}</h4>
-						<div className='container grid grid-cols-1 md:grid-cols-3 gap-7 mt-10 my-14'>
-							{category3?.posts?.nodes.map((item: any, index: number) => (
-								<div className='col-span-2 md:col-span-1' key={index}>
-									<Link href={item?.uri ?? ""}>
-										<div className='grid grid-cols-2 gap-3 items-center'>
-											<img className='col-span-1' src={item?.featuredImage?.node.sourceUrl} alt="" />
-											<span className='block col-span-1 text-md mt-3'>{item?.title}</span>
-										</div>
-									</Link>
-								</div>
-							))}
-						</div>
+						<Link href={category3?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category3?.name}</h4></Link>
+
+						<LayoutSliceThree data={category3?.posts?.nodes}></LayoutSliceThree>
 					</div>
 
 					<hr className='my-10 bg-black' />
 
 					<div className='posts-layout-1 mb-10'>
-						<h4 className='sub-category-title text-hover-effect text-center'>{category4?.name}</h4>
+						<Link href={category4?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category4?.name}</h4></Link>
 						<div className='container grid grid-col-1 md:grid-cols-7 gap-7 mt-10'>
 							<div className='col-span-5'>
 								<div className='grid grid-cols-2 gap-7'>
@@ -192,7 +187,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 										<Link className='col-span-1' href={item?.uri ?? ""} key={index}>
 											<div>
 												<img width={'100%'} src={item?.featuredImage?.node.sourceUrl} alt="" />
-												<p className='text-xl text-center mt-3 leading-7'>{item?.title}</p>
+												<p className='text-md font-merriweather text-center mt-3 leading-7'>{item?.title}</p>
 											</div>
 										</Link>
 									))}
@@ -207,12 +202,11 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 					<hr className='my-10 bg-black' />
 
 					<div className='posts-layout-1 mb-10'>
-						<h4 className='sub-category-title text-hover-effect text-center'>{category5?.name}</h4>
+					<Link href={category5?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category5?.name}</h4></Link>
 						<Link href={category5?.posts?.nodes[0].uri ?? ""}>
 							<div className='md:container grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 mb-14 items-center'>
 								<div className='px-5 md:px-0 col-span-1 order-2 md:order-1'>
 									<p className='text-hover-effect text-4xl md:text-5xl leading-none font-semibold'>{category5?.posts?.nodes[0].title}</p>
-									<p className='mt-5 text-2xl'>{category5?.posts?.nodes[0].title}</p>
 								</div>
 								<div className='col-span-1 order-1 md:order-2'>
 									<img className='sticky top-20 border-l-8 border-r-8 border-y-2 border-black' src={category5?.posts?.nodes[0].featuredImage.node.sourceUrl} alt="" />
