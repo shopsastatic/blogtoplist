@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import NcImage from "@/components/NcImage/NcImage";
-import { CUSTOM_POST_DATA, getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
+import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import SingleHeader from "../SingleHeader";
 import { FragmentType } from "@/__generated__";
 import { NC_POST_FULL_FRAGMENT } from "@/fragments";
@@ -9,7 +9,7 @@ import Link from "next/link";
 import classNames from "@/utils/classNames";
 import LayoutHalfFour from "@/components/LayoutHalfFour";
 import LayoutLineFour from "@/components/LayoutLineFour";
-import FormSubscibe from "@/components/formSubscibe";
+import FormSubscibe from "@/components/FormSubscibe";
 
 export interface SingleType1Props {
   post: FragmentType<typeof NC_POST_FULL_FRAGMENT>;
