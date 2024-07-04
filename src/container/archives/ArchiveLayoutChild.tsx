@@ -47,7 +47,7 @@ const ArchiveLayoutChild: FC<IArchiveLayoutChildProps> = ({
             <div className='mt-10 container'>
                 <h4 className='category-child-title text-center font-semibold'>HAIRSTYLES & HAIRCUTS 2024</h4>
                 <div className='breadcrumbs flex items-center text-xs gap-1 justify-center my-5'>
-                    <a href={parent?.node?.uri ?? "/"} className='underline underline-offset-4'>{parent?.node?.name}</a> > <p>{name}</p>
+                    <a href={parent?.node?.uri ?? "/"} className='underline underline-offset-4'>{parent?.node?.name}</a> {'>'} <p>{name}</p>
                 </div>
             </div>
             <div className='section-white'></div>
