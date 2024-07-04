@@ -61,7 +61,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	let category3 = []
 	let category4 = []
 	let category5 = []
-	let post1 = {}
+	let post1 = []
 
 	if(categorylayout) {
 		featuredImage = ncTaxonomyMeta?.featuredImage?.node?.sourceUrl ?? ""
@@ -138,7 +138,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 
 					<div className='container grid grid-cols-1 md:grid-cols-7 gap-10 mt-10 mb-14'>
 							<div className='col-span-1 md:col-span-5 order-2 md:order-1'>
-								<Link href={"/"}>
+								<Link href={post1?.uri ?? "/"}>
 									<img className='m-auto' src={post1?.featuredImage?.node.sourceUrl} alt="" />
 									<h4 className='text-hover-effect text-4xl md:text-5xl text-center mt-14 leading-none'>{post1?.title}</h4>
 								</Link>
