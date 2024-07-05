@@ -61,6 +61,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   
   const updatedContent = addIdsToH2Tags(content);
   
+  const featuredImageTyped: any = featuredImage;
 
   const paragraphs = updatedContent.split('</p>');
   const numParagraphs = paragraphs.length;
@@ -97,7 +98,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             </div>
           </div>
 
-          <img className="container single-featured-image" width={'100%'} src={featuredImage?.sourceUrl} alt={featuredImage?.altText} />
+          <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
           
           <div className="container">
             {layoutStyle == "Layout 1" && (
