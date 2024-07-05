@@ -116,6 +116,11 @@
   font-size: 17px;
 }
 
+.post-intro-content h1, .post-intro-content h2, .post-intro-content h3, .post-intro-content h4, .post-intro-content h5, .post-intro-content h6 {
+  margin-top: revert;
+  margin-bottom: 1rem;
+}
+
 .post-intro-content p {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;

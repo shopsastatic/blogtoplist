@@ -17,7 +17,6 @@ export async function myGetPaths() {
   );
 
   let posts = (await response.json()) as any[];
-  console.log(posts)
   let categories = (await getAllCategories.json()) as any[];
 
   if (!categories?.length) {

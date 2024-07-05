@@ -78,6 +78,8 @@ const Archive: FaustTemplate<PageArchiveGetArchiveQuery> = (props) => {
           tagDatabaseId={databaseId}
           taxonomyType="tag"
           top10Categories={_top10Categories}
+          categorylayout={[]}
+          ncTaxonomyMeta={[]}
         >
           <div className="container mt-4 md:mt-10">
             <div className="relative border border-neutral-200/70 dark:border-neutral-700 p-5 lg:p-7 rounded-3xl md:rounded-[2rem] flex flex-col md:flex-row gap-4 md:gap-6 xl:gap-12">

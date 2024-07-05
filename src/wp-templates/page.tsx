@@ -9,6 +9,7 @@ import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
 import PageLayout from "@/container/PageLayout";
 import MyWordPressBlockViewer from "@/components/MyWordPressBlockViewer";
 import SinglePage from "@/container/singles/SinglePage";
+import ArchiveLayout from "@/container/archives/ArchiveLayout";
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // LOADING ----------
@@ -20,14 +21,43 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   const { title, editorBlocks, featuredImage, ncPageMeta, pageCategory } =
     props.data?.page || {};
 
-    console.log(pageCategory)
-
   const blocks = flatListToHierarchical(editorBlocks as any, {
     idKey: "clientId",
     parentKey: "parentClientId",
   });
 
   const pageContent = props.data?.page?.editorBlocks
+  const isFrontPage = props.data?.page?.isFrontPage
+  
+  const postTyped: any = pageCategory;
+  const postsByCategory = postTyped?.pageCategory?.nodes?.[0] ?? []
+
+  if (isFrontPage) {
+    return (
+      <PageLayout
+        headerMenuItems={props.data?.primaryMenuItems?.nodes || []}
+        footerMenuItems={props.data?.footerMenuItems?.nodes || []}
+        pageFeaturedImageUrl={featuredImage?.node?.sourceUrl}
+        pageTitle={title}
+        generalSettings={
+          props.data?.generalSettings as NcgeneralSettingsFieldsFragmentFragment
+        }
+      >
+        <ArchiveLayout
+          name={"Home"}
+          initPosts={[]}
+          initPostsPageInfo={null}
+          tagDatabaseId={null}
+          taxonomyType="tag"
+          top10Categories={[]}
+          categorylayout={[]}
+          ncTaxonomyMeta={[]}
+          homepageData={props.data?.page?.pageCategory}
+          homepageImageUrl={featuredImage?.node?.sourceUrl}
+        ></ArchiveLayout>
+      </PageLayout>
+    )
+  }
 
   return (
     <>
@@ -44,9 +74,9 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
         <div className={`nc-PageSingle pt-8 lg:pt-16`}>
           <header className="rounded-xl">
             <div
-              className="max-w-screen-md mx-auto"
+              className="mx-auto"
             >
-              <SinglePage page={{ ... props?.data?.page }} />
+              <SinglePage page={{ ...props?.data?.page }} category={postsByCategory} />
             </div>
           </header>
         </div>
@@ -69,15 +99,6 @@ Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
-      pageCategory {
-        ... on PageCategory {
-          edges {
-            node {
-              name
-            }
-          }
-        }
-      }
       ncPageMeta {
         isFullWithPage
       }
@@ -87,6 +108,150 @@ Page.query = gql(`
           sourceUrl
         }
       }
+      pageCategory {
+      pageCategory {
+        nodes {
+          id
+          databaseId
+          name
+          uri
+          ... on Category {
+            posts {
+              nodes {
+                id
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      homeCategory1 {
+        nodes {
+          name
+          uri
+          ... on Category {
+            posts (first: 5) {
+              nodes {
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      homeCategory2 {
+        nodes {
+          name
+          uri
+          ... on Category {
+            posts (first: 4) {
+              nodes {
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      homeCategory3 {
+        nodes {
+          name
+          uri
+          ... on Category {
+            posts (first: 12) {
+              nodes {
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      homeCategory4 {
+        nodes {
+          name
+          uri
+          ... on Category {
+            posts (first: 4) {
+              nodes {
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      homeCategory5 {
+        nodes {
+          name
+          uri
+          ... on Category {
+            posts (first: 1) {
+              nodes {
+                title
+                uri
+                featuredImage {
+                  node {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      homePost1 {
+        nodes {
+          ... on Post {
+            title
+            uri
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
       editorBlocks(flat: true) {
         __typename
         renderedHtml
@@ -99,6 +264,7 @@ Page.query = gql(`
         ...CoreColumnsFragment
         ...CoreColumnFragment
       }
+        isFrontPage
     }
     # common query for all page 
     generalSettings {

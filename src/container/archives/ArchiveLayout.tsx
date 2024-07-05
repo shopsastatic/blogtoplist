@@ -34,7 +34,7 @@ interface IArchiveLayoutProps {
 }
 
 
-const ArchiveLayout: FC<IArchiveLayoutProps> = ({
+const ArchiveLayout: FC<any> = ({
 	children,
 	name,
 	initPosts: posts,
@@ -44,14 +44,19 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	taxonomyType,
 	top10Categories,
 	categorylayout,
-	ncTaxonomyMeta
+	ncTaxonomyMeta,
+	homepageData,
+	homepageImageUrl
 }) => {
 	// START ----------
 	//
-
 	const { } = useGetPostsNcmazMetaByIds({
 		posts: (posts || []) as TPostCard[],
 	})
+
+	const isEmptyObject = (obj: any) => {
+		return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+	};
 	
 	//
 	
@@ -63,7 +68,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 	let category5 = []
 	let post1 = []
 
-	if(categorylayout) {
+	if(categorylayout && top10Categories.length > 0) {
 		featuredImage = ncTaxonomyMeta?.featuredImage?.node?.sourceUrl ?? ""
 
 		post1 = categorylayout?.postTemp1?.nodes[0]
@@ -73,7 +78,15 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 		category3 = categorylayout.subCategory3?.nodes[0]
 		category4 = categorylayout.subCategory4?.nodes[0]
 		category5 = categorylayout.subCategory5?.nodes[0]
+	}else {
+		featuredImage = homepageImageUrl
+		post1 = homepageData?.homePost1?.nodes[0]
 
+		category1 = homepageData?.homeCategory1?.nodes[0]
+		category2 = homepageData?.homeCategory2?.nodes[0]
+		category3 = homepageData?.homeCategory3?.nodes[0]
+		category4 = homepageData?.homeCategory4?.nodes[0]
+		category5 = homepageData?.homeCategory5?.nodes[0]
 	}
 	
 	const {

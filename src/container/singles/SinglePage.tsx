@@ -7,17 +7,20 @@ import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment
 import { NC_POST_FULL_FRAGMENT } from "@/fragments";
 import { FragmentType } from "@/__generated__";
 import Link from "next/link";
+import LayoutHalfFour from "@/components/LayoutHalfFour";
+import LayoutLineFour from "@/components/LayoutLineFour";
 
 export interface SinglePageProps {
-    page: any
+    page: any,
+    category: any
 }
 
 const SinglePage: FC<SinglePageProps> = ({
     page,
+    category
 }) => {
 
-    console.log(page)
-    let content = page?.editorBlocks[0].renderedHtml
+    let content = page?.editorBlocks?.[0]?.renderedHtml
     return (
         <>
             <div className={`nc-SingleHeader`}>
@@ -41,24 +44,23 @@ const SinglePage: FC<SinglePageProps> = ({
                         ></div>
                     </div>
 
-                    {/* <div className="footer-category container mt-28">
-                        <a href={categories?.nodes[0]?.uri} className="block w-fit my-14">
-                            <h3>{categories?.nodes[0]?.name}</h3>
-                        </a>
-
-                        <LayoutHalfFour data={footer_category?.slice(0, 4)}></LayoutHalfFour>
-
-                        <div className="my-20">
-                            <LayoutLineFour data={footer_category?.slice(4, 8)}></LayoutLineFour>
-                        </div>
-
-                        <div className="my-20">
-                            <LayoutLineFour data={footer_category?.slice(8, 12)}></LayoutLineFour>
-                        </div>
-
-                        </div>
-                    </div> */}
                 </div>
+            </div>
+            <div className="footer-category container mt-28">
+                <a href={category?.uri} className="block w-fit my-14">
+                    <h3>{category?.name}</h3>
+                </a>
+
+                <LayoutHalfFour data={category?.posts?.nodes?.slice(0, 4)}></LayoutHalfFour>
+
+                <div className="my-20">
+                    <LayoutLineFour data={category?.posts?.nodes?.slice(4, 8)}></LayoutLineFour>
+                </div>
+
+                <div className="my-20">
+                    <LayoutLineFour data={category?.posts?.nodes?.slice(8, 12)}></LayoutLineFour>
+                </div>
+
             </div>
         </>
     );
