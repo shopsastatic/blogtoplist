@@ -41,6 +41,7 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 		posts: (posts?.nodes || []) as TPostCard[],
 	})
 	//
+	console.log(posts)
 
 	const userTyped: any = user;
 

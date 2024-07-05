@@ -58,9 +58,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
       return `<h2${p1} id="${id}">${p2}</h2>`;
     });
   };
-  
+
   const updatedContent = addIdsToH2Tags(content);
-  
+
   const featuredImageTyped: any = featuredImage;
 
   const paragraphs = updatedContent.split('</p>');
@@ -70,20 +70,64 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const dataProducts = postData?.products
   const headlineDesc = postData?.headlineDesc
-  const layoutStyle = postData?.layoutStyle &&  postData?.layoutStyle[0]
-  
+  const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
+
   const mainAuthor = postData?.author?.nodes[0]
-  
-  
+
+
+  const getCurrentDomain = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.origin;
+    }
+    return '';
+  };
+
+  const domain = getCurrentDomain();
+  const currentUrl = domain + "/" + uri
+
+  const linkToF = () => {
+    const urlToShare = encodeURIComponent(currentUrl);
+    const shareLink = `https://www.facebook.com/sharer.php?u=${urlToShare}&quote=${title}`;
+    window.open(shareLink, '_blank', 'width=600,height=600');
+  };
+
+  const linkToX = () => {
+    const urlToShare = encodeURIComponent(currentUrl);
+    const shareLink = `https://twitter.com/intent/tweet?url=${urlToShare}&text=${title}`;
+    window.open(shareLink, '_blank', 'width=600,height=600');
+  };
+
+  const linkToW = () => {
+    const urlToShare = encodeURIComponent(currentUrl);
+    const shareLink = `https://api.whatsapp.com/send?text=${title}%20${urlToShare}`;
+    window.open(shareLink, '_blank', 'width=600,height=600');
+  };
+
+  const linkToM = () => {
+    const urlToShare = encodeURIComponent(currentUrl);
+    const shareLink = `mailto:?subject=${title}&body=${urlToShare}`;
+    window.open(shareLink, '_blank', 'width=600,height=600');
+  };
+
   return (
     <>
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-4 lg:space-y-5">
           <div className="container">
-            <CategoryBadgeList
-              itemClass="!px-3 mb-10"
-              categories={categories?.nodes  || []}
-            />
+            <div className="mb-10 flex gap-1 items-center">
+              {categories?.nodes && categories.nodes.map((product: any, index: any) => (
+                <React.Fragment key={index}>
+                  <Link href={product.uri ?? "/"}>
+                    <span className="text-xs font-normal underline underline-offset-4">{product.name}</span>
+                  </Link>
+                  {categories?.nodes && index < categories.nodes.length - 1 && (
+                    <span className="text-xs font-normal mt-1">{">"}</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+
             <SingleTitle mainClass={titleMainClass} title={title || ""} />
             <div className="my-5">
               <h5 className="headline_desc italic">{headlineDesc}</h5>
@@ -93,14 +137,16 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                 <p>BY <a href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</a> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
-            <div className="save-article bg-black w-fit flex items-center gap-3 text-sm font-semibold p-2 px-8 my-4">
-                <img width={16} src="/images/posts/save-article.svg" alt="" />
-                <p className="text-white">Save Article</p>
+            <div className="save-article w-fit flex items-center gap-3 text-sm font-semibold my-4">
+              <img className="cursor-pointer" onClick={linkToF} src="/images/posts/facebook-icon.svg" alt="" />
+              <img className="cursor-pointer" onClick={linkToX} src="/images/posts/xcom-icon.svg" alt="" />
+              <img className="cursor-pointer" onClick={linkToW} src="/images/posts/whatsapp-icon.svg" alt="" />
+              <img className="cursor-pointer" onClick={linkToM} src="/images/posts/mail-icon.svg" alt="" />
             </div>
           </div>
 
           <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
-          
+
           <div className="container">
             {layoutStyle == "Layout 1" && (
               <div className="editor-text mb-5">
@@ -110,12 +156,12 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
             {!hiddenDesc && (
               <>
-              <div
-                dangerouslySetInnerHTML={{ __html: layoutStyle == "Layout 1" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
-                className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
-              ></div>
-              {layoutStyle == "Layout 1" && (
-                <div className="my-7">
+                <div
+                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Layout 1" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
+                  className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
+                ></div>
+                {layoutStyle == "Layout 1" && (
+                  <div className="my-7">
                     {dataProducts && dataProducts.slice(0, 3).map((product: any, index: any) => (
                       index <= 2 && (
                         <div key={index} className="flex gap-5 md:gap-10 border-b border-slate-400 py-5">
@@ -132,13 +178,13 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                     ))}
                   </div>
                 )}
-              
-              {layoutStyle == "Layout 1" && (
-                <div
-                  dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
-                  className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
-                ></div>
-              )}
+
+                {layoutStyle == "Layout 1" && (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
+                    className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
+                  ></div>
+                )}
               </>
             )}
           </div>

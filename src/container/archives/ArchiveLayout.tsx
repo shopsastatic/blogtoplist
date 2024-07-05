@@ -67,6 +67,7 @@ const ArchiveLayout: FC<any> = ({
 	let category4 = []
 	let category5 = []
 	let post1 = []
+	let isHomepage = false
 
 	if (categorylayout && top10Categories.length > 0) {
 		featuredImage = ncTaxonomyMeta?.featuredImage?.node?.sourceUrl ?? ""
@@ -79,6 +80,7 @@ const ArchiveLayout: FC<any> = ({
 		category4 = categorylayout.subCategory4?.nodes[0]
 		category5 = categorylayout.subCategory5?.nodes[0]
 	} else {
+		isHomepage = true
 		featuredImage = homepageImageUrl
 		post1 = homepageData?.homePost1?.nodes[0]
 
@@ -117,7 +119,9 @@ const ArchiveLayout: FC<any> = ({
 
 				<div className="">
 					<div className='page-category-banner' style={featuredImageStyle}>
-						<Button className='font-noto'>{name}</Button>
+						{!isHomepage && (
+							<Button className='font-noto'>{name}</Button>
+						)}
 					</div>
 
 					<div className='banner-section !mt-5 py-5 flex justify-center'>
@@ -125,16 +129,16 @@ const ArchiveLayout: FC<any> = ({
 					</div>
 
 					{category1?.posts?.nodes?.length > 0 && (
-						<div className='curated-section bg-black py-10'>
-							<Link href={category1?.uri ?? "/"} className='block w-fit m-auto'><h2 className='text-hover-effect text-white text-center'>{category1?.name}</h2></Link>
-							<div className="container grid grid-cols-5 mt-10 gap-5">
-								<div className="curated-main-image col-span-5 md:col-span-3 text-white">
+						<div className='curated-section bg-white py-10'>
+							<Link href={category1?.uri ?? "/"} className='block w-fit m-auto'><h2 className='text-hover-effect text-black text-center'>{category1?.name}</h2></Link>
+							<div className="container grid grid-cols-5 mt-10 gap-5 !pb-10">
+								<div className="curated-main-image col-span-5 md:col-span-3 text-black">
 									<Link href={category1?.posts?.nodes[0]?.uri ?? ""}>
 										<img src={category1?.posts?.nodes[0]?.featuredImage?.node?.sourceUrl} alt="" />
 										<h3 className='text-hover-effect text-center mt-10'>{category1?.posts?.nodes[0].title}</h3>
 									</Link>
 								</div>
-								<div className="curated-posts grid gap-3 col-span-5 md:col-span-2 text-white">
+								<div className="curated-posts grid gap-3 col-span-5 md:col-span-2 text-black">
 									{category1?.posts?.nodes.slice(1).map((item: any, index: number) => (
 										<Link key={index} href={item?.uri ?? ""}>
 											<div className='grid grid-cols-6 gap-3 items-center'>
@@ -148,6 +152,7 @@ const ArchiveLayout: FC<any> = ({
 								</div>
 
 							</div>
+							<hr className='my-10 bg-black' />
 						</div>
 					)}
 

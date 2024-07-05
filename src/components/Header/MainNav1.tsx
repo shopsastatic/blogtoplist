@@ -22,7 +22,6 @@ const MainNav1: FC<MainNav1Props> = ({ menuItems, title, description }) => {
 			<div className="container">
 				<div className="flex h-12 items-center justify-between py-3 sm:py-4">
 					<div className="flex flex-1 items-center">
-						<MenuBar menuItems={menuItems} />
 						<div className="flex flex-1 items-center space-x-4 sm:space-x-10 lg:justify-start 2xl:space-x-14 rtl:space-x-reverse">
 							<Brand title={title} description={description} />
 
@@ -36,8 +35,8 @@ const MainNav1: FC<MainNav1Props> = ({ menuItems, title, description }) => {
 							{/* <CreateBtn /> */}
 							{/* <SearchIconBtn className="flex" /> */}
 							{/* <AvatarDropdown /> */}
-							<Button className='header-subscribe bg-black !text-white !py-2 !text-xs !hover:text-black hover:bg-White !rounded-none'>SUBSCRIBE</Button>
-							<Link href={'/sign-in'} className='btn-login-header'>SIGN IN</Link>
+							<Button href='/email/lulune-newsletter/' className='header-subscribe mr-3 bg-black !text-white !py-2 !text-xs !hover:text-black hover:bg-White !rounded-none'>SUBSCRIBE</Button>
+							<MenuBar menuItems={menuItems} />
 						</div>
 					</div>
 				</div>
