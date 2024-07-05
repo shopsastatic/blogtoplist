@@ -130,7 +130,7 @@ const ArchiveLayout: FC<any> = ({
 							<div className="container grid grid-cols-5 mt-10 gap-5">
 								<div className="curated-main-image col-span-5 md:col-span-3 text-white">
 									<Link href={category1?.posts?.nodes[0]?.uri ?? ""}>
-										<img src={category1?.posts?.nodes[0].featuredImage.node.sourceUrl} alt="" />
+										<img src={category1?.posts?.nodes[0]?.featuredImage?.node?.sourceUrl} alt="" />
 										<h3 className='text-hover-effect text-center mt-10'>{category1?.posts?.nodes[0].title}</h3>
 									</Link>
 								</div>

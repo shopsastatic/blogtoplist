@@ -74,6 +74,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   
   const mainAuthor = postData?.author?.nodes[0]
   
+  
   return (
     <>
       <div className={`nc-SingleHeader ${className}`}>
@@ -88,8 +89,8 @@ const SingleHeader: FC<SingleHeaderProps> = ({
               <h5 className="headline_desc italic">{headlineDesc}</h5>
             </div>
             <div className="header-author">
-              {mainAuthor && (
-                <p>BY <a href={mainAuthor?.uri ?? "/"} className="underline underline-offset-2">{mainAuthor?.name}</a> PUBLISHED: {formatDate(date)}</p>
+              {author && (
+                <p>BY <a href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</a> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
             <div className="save-article bg-black w-fit flex items-center gap-3 text-sm font-semibold p-2 px-8 my-4">
