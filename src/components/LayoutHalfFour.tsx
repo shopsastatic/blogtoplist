@@ -12,7 +12,7 @@ const LayoutHalfFour: React.FC<LayoutHalfFourProps> = ({ data }) => {
         {data?.map((item: any, index: number) => (
           <Link href={item?.uri ?? "/"} className="col-span-1" key={index}>
             <img className="w-full" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
-            <p className="mt-7 text-black font-semibold">{item.title}</p>
+            <p className="font-merriweather mt-7 text-black">{item.title}</p>
           </Link>
         ))}
       </div>
