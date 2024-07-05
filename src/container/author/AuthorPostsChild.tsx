@@ -42,7 +42,7 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 	})
 	//
 
-	console.log(user)
+	const userTyped: any = user;
 
 	const {
 		currentPosts,
@@ -74,14 +74,14 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 					<img src="https://tpc.googlesyndication.com/simgad/5691605194776125024" alt="" />
 				</div>
 				<div className='container my-10'>
-					<img className='m-auto max-w-32 rounded-full' src={user?.ncUserMeta?.backgroundImage?.node?.sourceUrl} alt="" />
-					<h2 className='text-center uppercase my-5 !text-3xl'>{user?.name}</h2>
-					<p className='text-center font-semibold'>{user?.ncUserMeta?.ncBio}</p>
-					<span className='block text-center mt-5 font-light font-merriweather'>{user?.description}</span>
+					<img className='m-auto max-w-32 rounded-full' src={userTyped?.ncUserMeta?.backgroundImage?.node?.sourceUrl} alt="" />
+					<h2 className='text-center uppercase my-5 !text-3xl'>{userTyped?.name}</h2>
+					<p className='text-center font-semibold'>{userTyped?.ncUserMeta?.ncBio}</p>
+					<span className='block text-center mt-5 font-light font-merriweather'>{userTyped?.description}</span>
 				</div>
 
 				<div className='my-20 container'>
-					<LayoutLineFour data={user?.posts?.nodes}></LayoutLineFour>
+					<LayoutLineFour data={userTyped?.posts?.nodes}></LayoutLineFour>
 				</div>
 			</PageLayout>
 		</>
