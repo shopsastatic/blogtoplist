@@ -54,12 +54,27 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const addIdsToH2Tags = (htmlContent: any) => {
     return htmlContent.replace(/<h2(.*?)>(.*?)<\/h2>/g, (match: any, p1: any, p2: any) => {
-      const id = p2.trim().toLowerCase().replace(/[\s]+/g, '_').replace(/[^\w\-]+/g, '');
+      const id = p2.trim().toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
       return `<h2${p1} id="${id}">${p2}</h2>`;
     });
   };
 
-  const updatedContent = addIdsToH2Tags(content);
+
+  const addAnchorTagsToLi = (htmlContent: any) => {
+    return htmlContent.replace(/<li>(.*?)<\/li>/gs, (match: any, p1: any) => {
+      const cleanedContent = p1.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1').trim();
+      const slug = cleanedContent.toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
+      return `<li><a href="#${slug}">${cleanedContent}</a></li>`;
+    });
+  };
+
+  const processHtmlContent = (htmlContent: any) => {
+    let updatedContent = addIdsToH2Tags(htmlContent);
+    updatedContent = addAnchorTagsToLi(updatedContent);
+    return updatedContent;
+  };
+  
+  const updatedContent = processHtmlContent(content);
 
   const featuredImageTyped: any = featuredImage;
 
