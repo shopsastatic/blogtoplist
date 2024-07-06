@@ -149,7 +149,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             </div>
             <div className="header-author">
               {author && (
-                <p>BY <a href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</a> PUBLISHED: {formatDate(date)}</p>
+                <p>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
             <div className="save-article w-fit flex items-center gap-3 text-sm font-semibold my-4">

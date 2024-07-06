@@ -150,9 +150,9 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
 
         {footer_category.slice(0, 4).length > 0 || footer_category.slice(4, 8).length > 0 || footer_category.slice(8, 12).length > 0 && (
           <div className="footer-category container mt-28">
-            <a href={categoriesTyped?.nodes?.[0]?.uri ?? "/"} className="block w-fit my-14">
+            <Link href={categoriesTyped?.nodes?.[0]?.uri ?? "/"} className="block w-fit my-14">
               <h3>{categoriesTyped?.nodes?.[0]?.name ?? ""}</h3>
-            </a>
+            </Link>
 
             {footer_category.slice(0, 4).length > 0 && (
               <LayoutHalfFour data={footer_category.slice(0, 4)} />
