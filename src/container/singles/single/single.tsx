@@ -26,7 +26,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
     featuredImage,
     postData,
     categories,
-    ncPostMetaData
+    ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
 
   const categoriesTyped: any = categories;

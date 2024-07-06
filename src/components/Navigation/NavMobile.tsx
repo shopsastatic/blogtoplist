@@ -92,7 +92,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
 				defaultOpen={!index}
 			>
 				<Link
-					className="flex w-full items-center rounded-lg px-4 py-2.5 text-md font-medium tracking-wide hover:bg-neutral-100 dark:hover:bg-neutral-800"
+					className="flex w-full items-center rounded-lg px-4 py-2.5 text-sm font-medium tracking-wide hover:bg-neutral-100 dark:hover:bg-neutral-800"
 					href={{
 						pathname: item.uri || '',
 					}}
