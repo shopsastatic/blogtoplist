@@ -169,8 +169,8 @@ const NavMobile: React.FC<NavMobileProps> = ({
 			</ul>
 
 			<div className='sidebar-menu-footer flex gap-5 mt-5 pt-5 px-6'>
-				<Link href={'/'}>Privacy Policy</Link>
-				<Link href={'/'}>Term of Use</Link>
+				<Link href={'/'} className='text-sm'>Privacy Policy</Link>
+				<Link href={'/'} className='text-sm'>Term of Use</Link>
 			</div>
 		</div>
 	)
