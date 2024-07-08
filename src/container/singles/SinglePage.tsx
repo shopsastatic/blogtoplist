@@ -19,19 +19,13 @@ const SinglePage: FC<SinglePageProps> = ({
     page,
     category
 }) => {
-
-    let content = page?.editorBlocks?.[0]?.renderedHtml
+    
     return (
         <>
-            <div className={`nc-SingleHeader`}>
+            <div className={`nc-SingleHeader pb-14`}>
                 <div className="space-y-4 lg:space-y-5">
                     <div className="container">
                         <SingleTitle mainClass={page?.title} title={page?.title || ""} />
-
-                        <div className="save-article bg-black w-fit flex items-center gap-3 text-sm font-semibold p-2 px-8 my-4">
-                            <img width={16} src="/images/posts/save-article.svg" alt="" />
-                            <p className="text-white">Save Article</p>
-                        </div>
                     </div>
 
                     <img className="container single-featured-image" width={'100%'} src={page?.featuredImage?.node?.sourceUrl} alt={page?.featuredImage?.node?.altText} />
@@ -39,29 +33,37 @@ const SinglePage: FC<SinglePageProps> = ({
                     <div className="container">
 
                         <div
-                            dangerouslySetInnerHTML={{ __html: content?.trim() }}
+                            dangerouslySetInnerHTML={{ __html: page?.content}}
                             className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                         ></div>
                     </div>
 
                 </div>
             </div>
-            <div className="footer-category container mt-28">
-                <a href={category?.uri} className="block w-fit my-14">
-                    <h3>{category?.name}</h3>
-                </a>
+            {category?.posts?.nodes?.slice(0, 4).length > 0 && (
+                <div className="footer-category container mt-16">
+                    <a href={category?.uri} className="block w-fit my-14">
+                        <h3>{category?.name}</h3>
+                    </a>
 
-                <LayoutHalfFour data={category?.posts?.nodes?.slice(0, 4)}></LayoutHalfFour>
+                    {category?.posts?.nodes?.slice(0, 4).length > 0 && (
+                        <LayoutHalfFour data={category?.posts?.nodes?.slice(0, 4)}></LayoutHalfFour>
+                    )}
 
-                <div className="my-20">
-                    <LayoutLineFour data={category?.posts?.nodes?.slice(4, 8)}></LayoutLineFour>
+                    {category?.posts?.nodes?.slice(4, 8).length > 0 && (
+                        <div className="my-20">
+                            <LayoutLineFour data={category?.posts?.nodes?.slice(4, 8)}></LayoutLineFour>
+                        </div>
+                    )}
+
+                    {category?.posts?.nodes?.slice(8, 12).length > 0 && (
+                        <div className="my-20">
+                            <LayoutLineFour data={category?.posts?.nodes?.slice(8, 12)}></LayoutLineFour>
+                        </div>
+                    )}
+
                 </div>
-
-                <div className="my-20">
-                    <LayoutLineFour data={category?.posts?.nodes?.slice(8, 12)}></LayoutLineFour>
-                </div>
-
-            </div>
+            )}
         </>
     );
 };

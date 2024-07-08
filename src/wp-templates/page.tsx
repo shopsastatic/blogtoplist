@@ -18,7 +18,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   }
 
   // for this page
-  const { title, editorBlocks, featuredImage, ncPageMeta, pageCategory } =
+  const { title, editorBlocks, featuredImage, ncPageMeta, pageCategory, uri, content } =
     props.data?.page || {};
 
   const blocks = flatListToHierarchical(editorBlocks as any, {
@@ -99,6 +99,8 @@ Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
+      uri
+      content
       ncPageMeta {
         isFullWithPage
       }
