@@ -322,7 +322,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 		const isLink = !item.children?.length && !item.ncmazfaustMenu?.isMegaMenu
 		const ItemC = isLink ? Link : 'div'
 		return (
-			<div className="nc-menu-lv1 flex h-20 flex-shrink-0 items-center">
+			<div className="nc-menu-lv1 flex flex-shrink-0 items-center">
 				<ItemC
 					className="relative inline-flex cursor-pointer items-center rounded-xl px-4 py-2.5 text-xs font-medium text-neutral-700 dark:text-neutral-300"
 					href={isLink ? item.uri || '' : ''}
