@@ -71,7 +71,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
 				onClick={() => {
 					setIsVisable(!isVisable)
 				}}
-				className="flex items-center justify-center rounded-lg p-2.5 pl-0 text-black focus:outline-none"
+				className="flex items-center justify-center rounded-lg p-0 text-black focus:outline-none"
 			>
 				<Bars3Icon className="h-7 w-7 lg:h-8 lg:w-8" />
 			</button>
