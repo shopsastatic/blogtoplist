@@ -139,6 +139,25 @@
   text-underline-offset: 6px;
   padding-bottom: 20px;
   list-style-type: disc;
+  font-size: 0.9rem;
+}
+
+.post-intro-content .menu-content {
+  border: 1px solid #d4cccc;
+  padding: 15px 24px;
+}
+
+.post-intro-content .menu-content h2 {
+  font-size: 20px !important;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  padding: 0;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.post-intro-content .menu-content a {
+  font-size: 14px;
 }
 
 .post-intro-content b, .post-intro-content strong {
