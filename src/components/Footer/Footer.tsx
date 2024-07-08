@@ -91,7 +91,7 @@ export default function Footer({ menuItems }: Props) {
 						<WidgetAddSubscriberForm />
 						</div> */}
 				</div>
-				<img className='brand-footer-image' src="https://www.harpersbazaar.com/_assets/design-tokens/harpersbazaar/static/images/logos/network-logo.6416a85.svg?primary=%2523ffffff" alt="" />
+				<img className='brand-footer-image' src="/images/network-footer.svg" alt="" />
 				<div className='footer-intro-txt'>
 					<p>A Part of Hearst Digital Media</p>
 					<p>We may earn commission from links on this page, but we only recommend products we back.</p>

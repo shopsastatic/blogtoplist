@@ -100,8 +100,8 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
                     )}
                   </div>
                 </div>
-                <div className="product-pros-cons grid grid-cols-2 gap-5 mt-3 lg:mt-7 border">
-                  <div className="col-span-1 product-pros border-r p-4 pb-6">
+                <div className="product-pros-cons grid grid-col-1 md:grid-cols-2 gap-5 mt-3 lg:mt-7 border">
+                  <div className="col-span-1 product-pros border-0 border-b md:border-r md:border-b-0 p-4 pb-6">
                     <p className="pb-1">PROS</p>
                     <ul className="mt-3 flex flex-col gap-3">
                       {convertProsToArray(item.prosCons.pros)?.map((node: any, index: number) => node && (
@@ -112,7 +112,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
                       ))}
                     </ul>
                   </div>
-                  <div className="col-span-1 product-cons p-4 pb-6 pl-0">
+                  <div className="col-span-1 product-cons p-4 pb-6 pl-5 md:pl-0">
                     <p className="pb-1">CONS</p>
                     <ul className="mt-3 flex flex-col gap-3">
                       {convertProsToArray(item.prosCons.cons)?.map((node: any, index: number) => (

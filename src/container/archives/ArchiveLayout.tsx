@@ -124,9 +124,9 @@ const ArchiveLayout: FC<any> = ({
 						)}
 					</div>
 
-					<div className='banner-section !mt-5 py-5 flex justify-center'>
+					{/* <div className='banner-section !mt-5 py-5 flex justify-center'>
 						<img src="https://tpc.googlesyndication.com/simgad/15365825322237460383" alt="" />
-					</div>
+					</div> */}
 
 					{category1?.posts?.nodes?.length > 0 && (
 						<div className='curated-section bg-white py-10'>
@@ -165,7 +165,7 @@ const ArchiveLayout: FC<any> = ({
 								</Link>
 							</div>
 							<div className='col-span-1 md:col-span-2 order-1 md:order-2'>
-								<img className='sticky top-20 w-80 m-auto' src="https://tpc.googlesyndication.com/simgad/12060557987624385320" alt="" />
+								{/* <img className='sticky top-20 w-80 m-auto' src="https://tpc.googlesyndication.com/simgad/12060557987624385320" alt="" /> */}
 							</div>
 						</div>
 					)}
@@ -190,9 +190,9 @@ const ArchiveLayout: FC<any> = ({
 						</>
 					)}
 
-					<div className='mt-14 py-5 flex justify-center'>
+					{/* <div className='mt-14 py-5 flex justify-center'>
 						<img src="https://tpc.googlesyndication.com/simgad/15365825322237460383" alt="" />
-					</div>
+					</div> */}
 
 					{category3?.posts?.nodes?.length > 0 && (
 						<>
@@ -226,7 +226,7 @@ const ArchiveLayout: FC<any> = ({
 										</div>
 									</div>
 									<div className='col-span-5 md:col-span-2'>
-										<img className='sticky top-20 m-auto' src="https://tpc.googlesyndication.com/simgad/12060557987624385320" alt="" />
+										{/* <img className='sticky top-20 m-auto' src="https://tpc.googlesyndication.com/simgad/12060557987624385320" alt="" /> */}
 									</div>
 								</div>
 							</div>

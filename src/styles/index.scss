@@ -7,6 +7,10 @@ body, html {
     scroll-padding: 4rem;
 }
 
+.text-base {
+    line-height: 1.8em;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: Noto Serif Display, Georgia, serif;
     font-size: 44px;
@@ -41,6 +45,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .font-noto {
     font-family: Noto Serif Display, Georgia, serif;
+}
+
+@media (min-width: 1024px) {
+    .lg\:text-lg {
+        font-size: 1.125rem;
+        line-height: 1.9em;
+    }
 }
 
 @import "react-loading-skeleton/dist/skeleton.css";
