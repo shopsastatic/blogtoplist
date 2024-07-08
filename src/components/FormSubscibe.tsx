@@ -42,7 +42,7 @@ const FormSubscribe: React.FC<any> = ({ data }) => {
             </div>
             {error && <p className="text-red-500 text-xs mb-2">{error}</p>}
             <p className="text-xs leading-5 font-light">
-              By signing up, I agree to the <Link href="/" className="underline">Terms of Use</Link> (including the <Link href="/" className="underline">dispute resolution procedures</Link>) and have reviewed the <Link href="/" className="underline">Privacy Notice</Link>.
+              By signing up, I agree to the <Link href="/term-of-use" className="underline">Terms of Use</Link> (including the <Link href="/" className="underline">dispute resolution procedures</Link>) and have reviewed the <Link href="/privacy-policy" className="underline">Privacy Notice</Link>.
             </p>
           </>
         )}

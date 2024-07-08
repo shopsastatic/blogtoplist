@@ -58,25 +58,6 @@ export default function Footer({ menuItems }: Props) {
 				
 				<div className="border-t border-gray-900/10 md:flex md:items-center md:justify-between dark:border-neutral-700">
 					<div className="flex flex-wrap gap-x-6 gap-y-3 md:order-2">
-						{/* {NC_SITE_SETTINGS.site_socials?.map(item => (
-							<a
-								key={item?.name}
-								href={item?.url}
-								className="relative block"
-								target="_blank"
-								rel="noreferrer"
-							>
-								<span className="absolute -inset-0.5 hidden rounded-lg bg-neutral-400 dark:block"></span>
-								<span className="sr-only">{item?.name}</span>
-								<MyImage
-									width={22}
-									height={22}
-									className="max-h-[22px] opacity-60 hover:opacity-100"
-									src={item?.icon || ''}
-									alt={item?.name || ''}
-								/>
-							</a>
-						))} */}
 					</div>
 					<div className="mt-0 text-[13px] leading-5 text-gray-500 md:order-1 grid grid-col-1 md:grid-cols-2 gap-5 md:gap-16 items-center">
 						{/* {NC_SITE_SETTINGS.site_footer?.all_rights_reserved_text} */}
@@ -118,12 +99,12 @@ export default function Footer({ menuItems }: Props) {
 				</div>
 
 				<div className='legal-menu-footer mt-5 flex gap-5'>
-					<Link href={'/'}>Privacy Notice</Link>
+					<Link href={'/privacy-policy'}>Privacy Notice</Link>
 					<Link href={'/'}>CA Notice at Collection
 					</Link>
 					<Link href={'/'}>Your CA Privacy Rights/Shine the Light</Link>
 					<Link href={'/'}>DAA Industry Opt Out</Link>
-					<Link href={'/'}>Terms of Use</Link>
+					<Link href={'/term-of-use'}>Terms of Use</Link>
 					<Link href={'/'}>Site Map</Link>
 				</div>
 

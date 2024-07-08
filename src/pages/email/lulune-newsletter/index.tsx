@@ -73,7 +73,7 @@ const Page: FaustPage<any> = (props) => {
                       SUBSCRIBE
                     </button>
                     <span className="block text-xs leading-5">
-                      By signing up, I agree to the <a href="/" className="underline">Terms of Use</a> (including the <a href="/" className="underline">dispute resolution procedures</a>) and have reviewed the <a href="/" className="underline">Privacy Notice</a>.
+                      By signing up, I agree to the <Link href="/term-of-use" className="underline">Terms of Use</Link> (including the <Link href="/" className="underline">dispute resolution procedures</Link>) and have reviewed the <Link href="/privacy-policy" className="underline">Privacy Notice</Link>.
                     </span>
                   </>
                 )}
