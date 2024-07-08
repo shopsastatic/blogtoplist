@@ -28,6 +28,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
     categories,
     ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
+  console.log(post)
 
   const categoriesTyped: any = categories;
   const footer_category = categoriesTyped?.nodes?.[0]?.posts?.nodes?.filter((p: any) => p.uri !== uri) ?? [];
@@ -141,10 +142,10 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
 
             <FormSubscibe />
 
-            <div className="watch-next container">
+            {/* <div className="watch-next container">
               <p className="underline underline-offset-4">WATCH NEXT</p>
               <h3 className="text-center mt-10">This Real Housewife of New York Is Most Likely to Throw a Fit</h3>
-            </div>
+            </div> */}
           </div>
         )}
 

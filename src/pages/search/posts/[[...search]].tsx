@@ -17,6 +17,7 @@ import useGetPostsNcmazMetaByIds from "@/hooks/useGetPostsNcmazMetaByIds";
 import { TPostCard } from "@/components/Card2/Card2";
 import { TCategoryCardFull } from "@/components/CardCategory1/CardCategory1";
 import SearchPageLayout from "@/container/SearchPageLayout";
+import LayoutLineFour from "@/components/LayoutLineFour";
 
 const Page: FaustPage<SearchPageQueryGetPostsBySearchQuery> = (props) => {
   const { posts } = props.data || {};
@@ -59,12 +60,9 @@ const Page: FaustPage<SearchPageQueryGetPostsBySearchQuery> = (props) => {
           top10Categories={_top10Categories}
           handleChangeFilterPosts={handleChangeFilterPosts}
         >
-          <GridPostsArchive
-            posts={currentPosts}
-            loading={loading}
-            showLoadmore={hasNextPage}
-            onClickLoadmore={handleClickShowMore}
-          />
+          <div className="my-10">
+            <LayoutLineFour data={currentPosts}></LayoutLineFour>
+          </div>
         </SearchPageLayout>
       </PageLayout>
     </>
