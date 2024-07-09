@@ -124,9 +124,9 @@ const ArchiveLayout: FC<any> = ({
 						)}
 					</div>
 
-					{/* <div className='banner-section !mt-5 py-5 flex justify-center'>
-						<img src="https://tpc.googlesyndication.com/simgad/15365825322237460383" alt="" />
-					</div> */}
+					<div className='banner-section !mt-5 py-5 flex justify-center min-h-20'>
+						{/* <img src="https://tpc.googlesyndication.com/simgad/15365825322237460383" alt="" /> */}
+					</div>
 
 					{category1?.posts?.nodes?.length > 0 && (
 						<div className='curated-section bg-white py-10'>

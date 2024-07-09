@@ -260,6 +260,25 @@
   color: #000;
 }
 
+.post-product-main-image {
+  max-width: 466px;
+}
+
+.article-share-icon {
+  display: flex;
+  gap: 5px;
+}
+
+.article-share-icon .share-icon{
+  background-color: #f0f0f0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .nc-SingleHeader h1 {
     font-size: 36px;

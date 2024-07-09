@@ -64,17 +64,17 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
                   <div className="product-image relative col-span-1">
                     {item.isBestSeller ? (
                       <>
-                        <img width={130} className="absolute hidden lg:block top-10 left-2" src="/images/posts/best-seller-tag.svg" alt="" />
-                        <img width={100} className="absolute block lg:hidden top-10 left-2" src="/images/posts/best-seller-tag.svg" alt="" />
+                        <img width={120} className="absolute hidden sm:block -top-5 -left-2.5" src="/images/posts/best-seller-tag.svg" alt="" />
+                        <img width={60} className="absolute block sm:hidden -top-7 -left-3" src="/images/posts/best-seller-tag.svg" alt="" />
                       </>
                     ) : null}
                     {!item.isBestSeller && item.isSale ? (
                       <>
-                        <img width={130} className="absolute hidden lg:block top-1/3 left-2" src="/images/posts/on-sale.svg" alt="" />
-                        <img width={100} className="absolute block lg:hidden top-1/3 left-2" src="/images/posts/on-sale.svg" alt="" />
+                        <img width={120} className="absolute hidden sm:block -top-5 -left-2.5" src="/images/posts/on-sale.svg" alt="" />
+                        <img width={60} className="absolute block sm:hidden -top-10 -left-3" src="/images/posts/on-sale.svg" alt="" />
                       </>
                     ) : null}
-                    <img src={item.image.node.sourceUrl} alt="" />
+                    <img className="post-product-main-image" src={item.image.node.sourceUrl} alt="" />
                   </div>
                   <div className="product-info col-span-1">
                     <div className="hidden lg:block">

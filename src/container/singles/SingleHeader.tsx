@@ -73,7 +73,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     updatedContent = addAnchorTagsToLi(updatedContent);
     return updatedContent;
   };
-  
+
   const updatedContent = processHtmlContent(content);
 
   const featuredImageTyped: any = featuredImage;
@@ -152,11 +152,19 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                 <p>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
-            <div className="save-article w-fit flex items-center gap-3 text-sm font-semibold my-4">
-              <img className="cursor-pointer" onClick={linkToF} src="/images/posts/facebook-icon.svg" alt="" />
-              <img className="cursor-pointer" onClick={linkToX} src="/images/posts/xcom-icon.svg" alt="" />
-              <img className="cursor-pointer" onClick={linkToW} src="/images/posts/whatsapp-icon.svg" alt="" />
-              <img className="cursor-pointer" onClick={linkToM} src="/images/posts/mail-icon.svg" alt="" />
+            <div className="article-share-icon w-fit flex items-center gap-3 text-sm font-semibold my-4">
+              <div className="share-icon" onClick={linkToF}>
+                <img className="cursor-pointer max-w-5" src="/images/posts/facebook-icon.png" alt="" />
+              </div>
+              <div className="share-icon" onClick={linkToX}>
+                <img className="cursor-pointer max-w-5" src="/images/posts/x-icon.png" alt="" />
+              </div>
+              <div className="share-icon" onClick={linkToW}>
+                <img className="cursor-pointer max-w-5" src="/images/posts/whatsapp-icon.png" alt="" />
+              </div>
+              <div className="share-icon" onClick={linkToM}>
+                <img className="cursor-pointer max-w-5" src="/images/posts/mail-icon.png" alt="" />
+              </div>
             </div>
           </div>
 
