@@ -279,6 +279,19 @@
   cursor: pointer;
 }
 
+.share-icon.facebook:hover {
+  background-color: #3b5998;
+}
+.share-icon.x:hover {
+  background-color: #000;
+}
+.share-icon.whatsapp:hover {
+  background-color: #00ae4d;
+}
+.share-icon.mail:hover {
+  background-color: #e52222;
+}
+
 @media (max-width: 768px) {
   .nc-SingleHeader h1 {
     font-size: 36px;

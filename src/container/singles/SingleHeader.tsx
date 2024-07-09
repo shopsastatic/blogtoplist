@@ -153,17 +153,21 @@ const SingleHeader: FC<SingleHeaderProps> = ({
               )}
             </div>
             <div className="article-share-icon w-fit flex items-center gap-3 text-sm font-semibold my-4">
-              <div className="share-icon" onClick={linkToF}>
-                <img className="cursor-pointer max-w-5" src="/images/posts/facebook-icon.png" alt="" />
+              <div className="share-icon facebook relative group" onClick={linkToF}>
+                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/facebook-icon.png" alt="Facebook Icon" />
+                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/facebook-icon-white.png" alt="Facebook Icon White" />
               </div>
-              <div className="share-icon" onClick={linkToX}>
-                <img className="cursor-pointer max-w-5" src="/images/posts/x-icon.png" alt="" />
+              <div className="share-icon x group" onClick={linkToX}>
+                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/x-icon.png" alt="X Icon" />
+                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/x-icon-white.png" alt="X Icon White" />
               </div>
-              <div className="share-icon" onClick={linkToW}>
-                <img className="cursor-pointer max-w-5" src="/images/posts/whatsapp-icon.png" alt="" />
+              <div className="share-icon whatsapp group" onClick={linkToW}>
+                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/whatsapp-icon.png" alt="Whatsapp Icon" />
+                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/whatsapp-icon-white.png" alt="Whatsapp Icon White" />
               </div>
-              <div className="share-icon" onClick={linkToM}>
-                <img className="cursor-pointer max-w-5" src="/images/posts/mail-icon.png" alt="" />
+              <div className="share-icon mail group" onClick={linkToM}>
+                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/mail-icon.png" alt="Mail Icon" />
+                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/mail-icon-white.png" alt="Mail Icon White" />
               </div>
             </div>
           </div>
