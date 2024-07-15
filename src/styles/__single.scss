@@ -26,9 +26,18 @@
 }
 
 .product-overview button {
-  background-color: #00767A;
-  padding: 10px 25px;
-  font-weight: 400;
+  background-color: #00767a;
+    padding: 10px 25px;
+    font-weight: 400;
+    transition: all .3s;
+    border: 1px solid #00767a;
+}
+
+.product-overview button:hover {
+  background: #fff;
+  color: #000;
+  transition: all .3s;
+  border: 1px solid #000;
 }
 
 .product-review-layout.container {
