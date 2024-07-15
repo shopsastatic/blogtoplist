@@ -12075,6 +12075,8 @@ export type PostData = AcfFieldGroup & AcfFieldGroupFields & PostData_Fields & {
   __typename?: 'PostData';
   /** Field of the &quot;user&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
   author?: Maybe<AcfUserConnection>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
+  conclusion?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
   faqsFooter?: Maybe<Array<Maybe<PostDataFaqsFooter_Layout>>>;
   /**
@@ -12187,10 +12189,14 @@ export type PostDataProductsItemLayout = AcfFieldGroup & AcfFieldGroupFields & P
   isSale?: Maybe<Scalars['Boolean']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
+  price?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   prosCons?: Maybe<PostDataProductsProsCons>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   salePercentage?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;range&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
+  score?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -12216,10 +12222,14 @@ export type PostDataProductsItemLayout_Fields = {
   isSale?: Maybe<Scalars['Boolean']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
+  price?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   prosCons?: Maybe<PostDataProductsProsCons>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   salePercentage?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;range&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
+  score?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -12261,6 +12271,8 @@ export type PostDataProducts_Layout = {
 export type PostData_Fields = {
   /** Field of the &quot;user&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
   author?: Maybe<AcfUserConnection>;
+  /** Field of the &quot;wysiwyg&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
+  conclusion?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;flexible_content&quot; Field Type added to the schema as part of the &quot;PostData&quot; Field Group */
   faqsFooter?: Maybe<Array<Maybe<PostDataFaqsFooter_Layout>>>;
   /**

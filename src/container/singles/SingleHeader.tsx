@@ -175,7 +175,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
           <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
 
           <div className="container">
-            {layoutStyle == "Layout 1" && (
+            {layoutStyle == "Style 1" && (
               <div className="editor-text mb-5">
                 <p className="text-center text-xs">Every item on this page was chosen by an LULUNE editor. We may earn commission on some of the items you choose to buy.</p>
               </div>
@@ -184,10 +184,10 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             {!hiddenDesc && (
               <>
                 <div
-                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Layout 1" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
+                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Style 1" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
                   className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                 ></div>
-                {layoutStyle == "Layout 1" && (
+                {layoutStyle == "Style 1" && (
                   <div className="my-7">
                     {dataProducts && dataProducts.slice(0, 3).map((product: any, index: any) => (
                       index <= 2 && (
@@ -206,7 +206,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   </div>
                 )}
 
-                {layoutStyle == "Layout 1" && (
+                {layoutStyle == "Style 1" && (
                   <div
                     dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
                     className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"

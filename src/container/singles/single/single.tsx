@@ -90,7 +90,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
                     )}
                     {item.actionButtons && item.actionButtons.map((e: any, index: number) => (
                       <Link key={index} href={e.actionLink} className={`m-auto lg:mx-0 block mb-4 w-fit ${!item.salePercentage ? '!mt-4' : ''}`}>
-                        <button className="text-sm uppercase block bg-black text-white m-auto lg:m-0">
+                        <button className="text-sm font-normal block bg-black text-white m-auto lg:m-0">
                           {e.actionText}
                         </button>
                       </Link>

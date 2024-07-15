@@ -13,7 +13,8 @@
 }
 
 .headline_desc {
-  font-size: 20px !important;
+  font-size: 10px !important;
+  line-height: 1.4;
 }
 
 .product-overview {
@@ -27,7 +28,7 @@
 .product-overview button {
   background-color: #00767A;
   padding: 10px 25px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .product-review-layout.container {
@@ -172,7 +173,6 @@
 
 .nc-SingleHeader h1 {
   font-weight: 400;
-  letter-spacing: 0.05em;
   line-height: 1.2;
 }
 
