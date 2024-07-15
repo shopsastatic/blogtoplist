@@ -7,13 +7,13 @@ export interface SingleTitleProps {
 }
 
 const SingleTitle: FC<SingleTitleProps> = ({
-  mainClass = "text-neutral-900 font-semibold text-2xl sm:text-3xl lg:text-4xl xl:leading-[115%] xl:text-[2.75rem] dark:text-neutral-100",
+  mainClass = "",
   className = "",
   title,
 }) => {
   return (
     <h1
-      className={className + " " + mainClass + " max-w-4xl "}
+      className={className + "main-post-title " + mainClass}
       title={title}
       dangerouslySetInnerHTML={{ __html: title || "" }}
     ></h1>

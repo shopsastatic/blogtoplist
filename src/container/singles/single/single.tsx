@@ -41,15 +41,15 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   return (
     <>
       <div className="section-white"></div>
-      <div className={`nc-PageSingle pt-8 lg:pt-16`}>
+      <div className={`nc-PageSingle ${layoutStyle == "Style 2" ? "pt-8 lg:pt-16" : ""}`}>
         <header className="rounded-xl">
-          <div className={!hasFeaturedImage && showRightSidebar ? "" : `max-w-screen-md mx-auto`}>
+          <div className={!hasFeaturedImage && showRightSidebar ? "" : `max-w-[1140px] mx-auto`}>
             <SingleHeader post={{ ...post }} />
             {!hasFeaturedImage && <div className="my-5 border-b border-neutral-200 dark:border-neutral-800" />}
           </div>
         </header>
 
-        {layoutStyle === "Style 1" && (
+        {layoutStyle == "Style 1" || layoutStyle == "Style 2" && (
           <div className="post-style-1">
             {postData?.products?.map((item: any, index: number) => (
               <div key={index} className="box-product product-review-layout container max-w-96 mt-20 mx-0" id={`product_${++index}`}>

@@ -89,6 +89,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const mainAuthor = postData?.author?.nodes[0]
 
+  if (layoutStyle == "Style 1") {
+    titleMainClass = "text-center"
+  }
 
   const getCurrentDomain = () => {
     if (typeof window !== 'undefined') {
@@ -126,10 +129,11 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   return (
     <>
-      <div className={`nc-SingleHeader ${className}`}>
-        <div className="space-y-4 lg:space-y-5">
+      {layoutStyle == "Style 1" && (
+        <>
+          <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
           <div className="container">
-            <div className="mb-10 flex gap-1 items-center">
+            <div className="my-5 flex gap-1 items-center justify-center">
               {categories?.nodes && categories.nodes.map((product: any, index: any) => (
                 <React.Fragment key={index}>
                   <Link href={product.uri ?? "/"}>
@@ -145,14 +149,14 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
             <SingleTitle mainClass={titleMainClass} title={title || ""} />
             <div className="my-5">
-              <h5 className="headline_desc italic">{headlineDesc}</h5>
+              <h5 className="headline_desc italic text-center">{headlineDesc}</h5>
             </div>
-            <div className="header-author">
+            <div className="header-author m-auto">
               {author && (
-                <p>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link> PUBLISHED: {formatDate(date)}</p>
+                <p className="flex items-center justify-center gap-5"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
-            <div className="article-share-icon w-fit flex items-center gap-3 text-sm font-semibold my-4">
+            <div className="article-share-icon flex items-center justify-center w-full gap-3 text-sm font-semibold my-4">
               <div className="share-icon facebook relative group" onClick={linkToF}>
                 <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/facebook-icon.png" alt="Facebook Icon" />
                 <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/facebook-icon-white.png" alt="Facebook Icon White" />
@@ -170,12 +174,67 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                 <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/mail-icon-white.png" alt="Mail Icon White" />
               </div>
             </div>
+
+            <Link href={"#product_1"} className="w-fit">
+              <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
+            </Link>
           </div>
+        </>
+      )}
+
+
+      <div className={`nc-SingleHeader ${className}`}>
+        <div className="space-y-4 lg:space-y-5">
+          {layoutStyle == "Style 2" && (
+            <div className="container">
+              <div className="mb-10 flex gap-1 items-center">
+                {categories?.nodes && categories.nodes.map((product: any, index: any) => (
+                  <React.Fragment key={index}>
+                    <Link href={product.uri ?? "/"}>
+                      <span className="text-xs font-normal underline underline-offset-4">{product.name}</span>
+                    </Link>
+                    {categories?.nodes && index < categories.nodes.length - 1 && (
+                      <span className="text-xs font-normal mt-1">{">"}</span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+
+
+              <SingleTitle mainClass={titleMainClass} title={title || ""} />
+              <div className="my-5">
+                <h5 className="headline_desc italic">{headlineDesc}</h5>
+              </div>
+              <div className="header-author">
+                {author && (
+                  <p className="flex items-center gap-5"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
+                )}
+              </div>
+              <div className="article-share-icon w-fit flex items-center gap-3 text-sm font-semibold my-4">
+                <div className="share-icon facebook relative group" onClick={linkToF}>
+                  <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/facebook-icon.png" alt="Facebook Icon" />
+                  <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/facebook-icon-white.png" alt="Facebook Icon White" />
+                </div>
+                <div className="share-icon x group" onClick={linkToX}>
+                  <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/x-icon.png" alt="X Icon" />
+                  <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/x-icon-white.png" alt="X Icon White" />
+                </div>
+                <div className="share-icon whatsapp group" onClick={linkToW}>
+                  <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/whatsapp-icon.png" alt="Whatsapp Icon" />
+                  <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/whatsapp-icon-white.png" alt="Whatsapp Icon White" />
+                </div>
+                <div className="share-icon mail group" onClick={linkToM}>
+                  <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/mail-icon.png" alt="Mail Icon" />
+                  <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/mail-icon-white.png" alt="Mail Icon White" />
+                </div>
+              </div>
+            </div>
+          )}
 
           <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
 
           <div className="container">
-            {layoutStyle == "Style 1" && (
+            {layoutStyle == "Style 2" && (
               <div className="editor-text mb-5">
                 <p className="text-center text-xs">Every item on this page was chosen by an LULUNE editor. We may earn commission on some of the items you choose to buy.</p>
               </div>
@@ -184,10 +243,10 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             {!hiddenDesc && (
               <>
                 <div
-                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Style 1" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
+                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Style 2" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
                   className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                 ></div>
-                {layoutStyle == "Style 1" && (
+                {layoutStyle == "Style 2" && (
                   <div className="my-7">
                     {dataProducts && dataProducts.slice(0, 3).map((product: any, index: any) => (
                       index <= 2 && (
@@ -206,7 +265,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   </div>
                 )}
 
-                {layoutStyle == "Style 1" && (
+                {layoutStyle == "Style 2" && (
                   <div
                     dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
                     className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"

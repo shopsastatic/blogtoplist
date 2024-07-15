@@ -13,7 +13,7 @@
 }
 
 .headline_desc {
-  font-size: 10px !important;
+  font-size: 18px !important;
   line-height: 1.4;
 }
 
@@ -180,9 +180,9 @@
   margin: auto;
 }
 
-.nc-SingleHeader h1 {
+.main-post-title {
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .editor-text {
@@ -213,7 +213,7 @@
   font-size: 11.3px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .save-article {
@@ -303,7 +303,7 @@
 }
 
 @media (max-width: 768px) {
-  .nc-SingleHeader h1 {
+  .main-post-title {
     font-size: 36px;
   }
 
@@ -378,6 +378,10 @@
     max-width: 320px;
     width: 100%;
     margin: auto;
+  }
+
+  .post-intro-content h2 {
+    font-size: 26px;
   }
 }
 
