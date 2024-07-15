@@ -28,7 +28,6 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
     categories,
     ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
-  console.log(post)
 
   const categoriesTyped: any = categories;
   const footer_category = categoriesTyped?.nodes?.[0]?.posts?.nodes?.filter((p: any) => p.uri !== uri) ?? [];
