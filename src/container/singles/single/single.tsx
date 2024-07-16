@@ -37,6 +37,15 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   const hasFeaturedImage = !!featuredImage?.sourceUrl;
   const imgWidth = featuredImage?.mediaDetails?.width || 1000;
   const imgHeight = featuredImage?.mediaDetails?.height || 750;
+  let postContainClass = "";
+
+  if(layoutStyle == "Style 1") {
+    postContainClass = "post-style-1"
+  }else if(layoutStyle == "Style 2") {
+    postContainClass = "post-style-2"
+  }else {
+    postContainClass = "post-style-1"
+  }
 
   return (
     <>
@@ -49,8 +58,8 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
           </div>
         </header>
 
-        {layoutStyle == "Style 1" || layoutStyle == "Style 2" && (
-          <div className="post-style-1">
+        {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
+          <div className={postContainClass}>
             {postData?.products?.map((item: any, index: number) => (
               <div key={index} className="box-product product-review-layout container max-w-96 mt-20 mx-0" id={`product_${++index}`}>
                 <div className="product-overview grid grid-cols-1 lg:grid-cols-2 gap-7">
@@ -99,32 +108,34 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
                     )}
                   </div>
                 </div>
-                <div className="product-pros-cons grid grid-col-1 md:grid-cols-2 gap-5 mt-3 lg:mt-7 border">
-                  <div className="col-span-1 product-pros border-0 border-b md:border-r md:border-b-0 p-4 pb-6">
-                    <p className="pb-1">PROS</p>
-                    <ul className="mt-3 flex flex-col gap-3">
-                      {convertProsToArray(item.prosCons.pros)?.map((node: any, index: number) => node && (
-                        <li key={index} className="flex gap-2 items-start">
-                          <img width={15} className="pros-cons-icon" src={"/images/posts/circle-check.svg"} alt="" />
-                          <p>{node}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="col-span-1 product-cons p-4 pb-6 pl-5 md:pl-0">
-                    <p className="pb-1">CONS</p>
-                    <ul className="mt-3 flex flex-col gap-3">
-                      {convertProsToArray(item.prosCons.cons)?.map((node: any, index: number) => (
-                        index % 2 === 0 && node.nodeName !== '#text' && (
+                {(convertProsToArray(item?.prosCons?.pros)?.length || convertProsToArray(item?.prosCons?.cons)?.length) && (
+                  <div className="product-pros-cons grid grid-col-1 md:grid-cols-2 gap-5 mt-3 lg:mt-7 border">
+                    <div className="col-span-1 product-pros border-0 border-b md:border-r md:border-b-0 p-4 pb-6">
+                      <p className="pb-1">PROS</p>
+                      <ul className="mt-3 flex flex-col gap-3">
+                        {convertProsToArray(item.prosCons.pros)?.map((node: any, index: number) => node && (
                           <li key={index} className="flex gap-2 items-start">
-                            <img width={15} className="pros-cons-icon" src={"/images/posts/circle-xmark.svg"} alt="" />
+                            <img width={15} className="pros-cons-icon" src={"/images/posts/circle-check.svg"} alt="" />
                             <p>{node}</p>
                           </li>
-                        )
-                      ))}
-                    </ul>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="col-span-1 product-cons p-4 pb-6 pl-5 md:pl-0">
+                      <p className="pb-1">CONS</p>
+                      <ul className="mt-3 flex flex-col gap-3">
+                        {convertProsToArray(item.prosCons.cons)?.map((node: any, index: number) => (
+                          index % 2 === 0 && node.nodeName !== '#text' && (
+                            <li key={index} className="flex gap-2 items-start">
+                              <img width={15} className="pros-cons-icon" src={"/images/posts/circle-xmark.svg"} alt="" />
+                              <p>{node}</p>
+                            </li>
+                          )
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="product-review-content mt-10" dangerouslySetInnerHTML={{ __html: item.description }} />
               </div>
             ))}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import CategoryBadgeList from "@/components/CategoryBadgeList/CategoryBadgeList";
 import SingleTitle from "./SingleTitle";
 import PostMeta2 from "@/components/PostMeta2/PostMeta2";
@@ -127,6 +127,13 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     window.open(shareLink, '_blank', 'width=600,height=600');
   };
 
+  const [showAll, setShowAll] = useState(false);
+  const productsToShow = showAll ? dataProducts : dataProducts?.slice(0, 5);
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <>
       {layoutStyle == "Style 1" && (
@@ -153,7 +160,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             </div>
             <div className="header-author m-auto">
               {author && (
-                <p className="flex items-center justify-center gap-5"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
+                <p className="flex items-center justify-center flex-wrap gap-0 md:gap-5 mb-5 md:mb-0"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
               )}
             </div>
             <div className="article-share-icon flex items-center justify-center w-full gap-3 text-sm font-semibold my-4">
@@ -243,9 +250,46 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             {!hiddenDesc && (
               <>
                 <div
-                  dangerouslySetInnerHTML={{ __html: layoutStyle == "Style 2" ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
+                  dangerouslySetInnerHTML={{ __html: (layoutStyle == "Style 1" || layoutStyle == "Style 2") ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
                   className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                 ></div>
+
+                {layoutStyle == "Style 1" && (
+                  <div className="my-7">
+                    {productsToShow?.map((product: any, index: any) => (
+                      (
+                        <div key={index} className="flex gap-5 md:gap-10 border-b border-slate-400 py-5">
+                          <div className="flex items-center">
+                            <h3>{++index}</h3>
+                            <Link href={`#product_${index}`}><img width={130} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="col-span-1">
+                              <span className="text-xs font-semibold border-b border-black">{product.title}</span>
+                              <Link href={`#product_${index}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
+                              <button className="block md:hidden w-full py-2 md:py-3 mt-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>
+                              <Link href={`#product_${index}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
+                            </div>
+                            <div className="col-span-1 flex-col justify-center items-center hidden md:flex">
+                              <button className="w-full py-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    ))}
+                    {dataProducts && dataProducts?.length > 5 && (
+                      <div className="text-center mt-5">
+                        <button
+                          onClick={toggleShowAll}
+                          className="py-2 px-5 text-sm border bg-white text-black border-black w-full hover:bg-[#ddd] rounded transition-all"
+                        >
+                          {showAll ? 'SHOW LESS' : 'SHOW MORE'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {layoutStyle == "Style 2" && (
                   <div className="my-7">
                     {dataProducts && dataProducts.slice(0, 3).map((product: any, index: any) => (
@@ -265,7 +309,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   </div>
                 )}
 
-                {layoutStyle == "Style 2" && (
+                {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
                   <div
                     dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
                     className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
