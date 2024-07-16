@@ -539,7 +539,27 @@ export const NC_USER_SHORT_FOR_POST_CARD_FRAGMENT = gql(/* GraphQL */ `
 		username
 		name
 		ncUserMeta {
+			buymeacoffeUrl
+			color
+			facebookUrl
+			githubUrl
+			instagramUrl
+			linkedinUrl
+			mediumUrl
+			ncBio
+			pinterestUrl
+			twitchUrl
+			twitterUrl
+			vimeoUrl
+			websiteUrl
+			youtubeUrl
+			tiktokUrl
 			featuredImage {
+				node {
+					...NcmazFcImageFields
+				}
+			}
+			backgroundImage {
 				node {
 					...NcmazFcImageFields
 				}

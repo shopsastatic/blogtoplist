@@ -10,8 +10,8 @@ import React, { FC } from "react";
 
 export interface SingleAuthorProps {
   author:
-    | FragmentType<typeof NC_USER_FULL_FIELDS_FRAGMENT>
-    | NcmazFcUserFullFieldsFragment;
+  | FragmentType<typeof NC_USER_FULL_FIELDS_FRAGMENT>
+  | NcmazFcUserFullFieldsFragment;
 }
 
 const SingleAuthor: FC<SingleAuthorProps> = ({ author: authorProp }) => {
@@ -19,29 +19,40 @@ const SingleAuthor: FC<SingleAuthorProps> = ({ author: authorProp }) => {
     authorProp as FragmentType<typeof NC_USER_FULL_FIELDS_FRAGMENT>
   );
 
+  console.log(author)
+
   const T = getTrans();
   return (
-    <div className="nc-SingleAuthor flex">
-      <Link href={author?.uri || ""}>
-        <Avatar
-          imgUrl={
-            getImageDataFromImageFragment(
-              author?.ncUserMeta?.featuredImage?.node
-            ).sourceUrl
-          }
-          userName={author?.name || "T"}
-          sizeClass="h-12 w-12 text-lg sm:text-xl md:h-24 sm:w-24"
-          radius="rounded-2xl sm:rounded-3xl"
-        />
-      </Link>
-      <div className="flex flex-col ms-3 max-w-lg sm:ms-5">
-        <span className="text-xs text-neutral-400 uppercase tracking-wider">
-          {T.pageSingle["WRITTEN BY"]}
-        </span>
-        <h2 className="text-base sm:text-lg font-semibold text-neutral-900 dark:text-neutral-200">
-          <Link href={author?.uri || ""}>{author?.name}</Link>
-        </h2>
-        <span className="block mt-1 text-sm text-neutral-500 sm:text-base dark:text-neutral-300">
+    <div className="nc-SingleAuthor">
+      <div className="flex items-center md:items-start gap-2">
+        <Link href={author?.uri || ""}>
+          <Avatar
+            imgUrl={
+              getImageDataFromImageFragment(
+                author?.ncUserMeta?.featuredImage?.node
+              ).sourceUrl
+            }
+            userName={author?.name || "T"}
+            sizeClass="h-[60px] w-[60px]"
+            radius="rounded-full"
+          />
+        </Link>
+        <div className="flex flex-col max-w-lg">
+          <h2 className="!text-xs uppercase underline underline-offset-2 font-semibold font-inter">
+            <Link href={author?.uri || ""} className="text-sm">{author?.name}</Link>
+          </h2>
+          <p className="text-sm my-3">{author?.ncUserMeta?.ncBio}</p>
+          <span className="text-sm">
+            {author?.description || ""}
+          </span>
+          <Link href={author?.uri ?? "/"} className="mt-2 underline block w-fit">
+            <p className="text-sm">Read Full Bio</p>
+          </Link>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <span className="block md:hidden text-[15px]">
           {author?.description || ""}
         </span>
       </div>

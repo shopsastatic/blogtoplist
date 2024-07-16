@@ -88,6 +88,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
   const mainAuthor = postData?.author?.nodes[0]
+  console.log(mainAuthor)
 
   if (layoutStyle == "Style 1") {
     titleMainClass = "text-center"
@@ -182,7 +183,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
               </div>
             </div>
 
-            <Link href={"#product_1"} className="w-fit">
+            <Link href={"#toc-product-1"} className="w-fit block m-auto">
               <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
             </Link>
           </div>

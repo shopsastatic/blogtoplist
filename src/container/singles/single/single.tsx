@@ -8,6 +8,7 @@ import Link from "next/link";
 import LayoutHalfFour from "@/components/LayoutHalfFour";
 import LayoutLineFour from "@/components/LayoutLineFour";
 import FormSubscibe from "@/components/FormSubscibe";
+import SingleAuthor from "../SingleAuthor";
 
 export interface SingleType1Props {
   post: FragmentType<typeof NC_POST_FULL_FRAGMENT>;
@@ -39,11 +40,11 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   const imgHeight = featuredImage?.mediaDetails?.height || 750;
   let postContainClass = "";
 
-  if(layoutStyle == "Style 1") {
+  if (layoutStyle == "Style 1") {
     postContainClass = "post-style-1"
-  }else if(layoutStyle == "Style 2") {
+  } else if (layoutStyle == "Style 2") {
     postContainClass = "post-style-2"
-  }else {
+  } else {
     postContainClass = "post-style-1"
   }
 
@@ -140,14 +141,20 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
               </div>
             ))}
 
-            <div className="faqs-footer container m-0 !mt-20">
-              {postData?.faqsFooter?.map((item: any, index: number) => (
-                <div className="faq-item" key={index}>
-                  <h4>{item.label}</h4>
-                  <div className="faq-divider"></div>
-                  <div className="faq-content mb-14" dangerouslySetInnerHTML={{ __html: item.content }}></div>
-                </div>
-              ))}
+            {postData?.faqsFooter?.length && (
+              <div className="faqs-footer container m-0 !mt-20">
+                {postData?.faqsFooter?.map((item: any, index: number) => (
+                  <div className="faq-item" key={index}>
+                    <h4>{item.label}</h4>
+                    <div className="faq-divider"></div>
+                    <div className="faq-content mb-14" dangerouslySetInnerHTML={{ __html: item.content }}></div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="max-w-[940px] mx-auto border-t border-[#000] w-fit pb-10 p-5">
+              <SingleAuthor author={author} />
             </div>
 
             <FormSubscibe />
