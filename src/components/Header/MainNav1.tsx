@@ -19,7 +19,7 @@ export interface MainNav1Props {
 const MainNav1: FC<MainNav1Props> = ({ menuItems, title, description }) => {
 	return (
 		<div className="main-header nc-MainNav1 relative z-10 border-neutral-200/70 bg-white dark:border-transparent border-b-2">
-			<div className="container">
+			<div className="container !max-w-[1300px]">
 				<div className="flex h-12 items-center justify-between py-3 sm:py-4">
 					<div className="flex flex-1 items-center">
 						<div className="flex flex-1 items-center space-x-4 sm:space-x-10 lg:justify-start 2xl:space-x-14 rtl:space-x-reverse">

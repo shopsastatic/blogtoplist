@@ -55,7 +55,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const addIdsToH2Tags = (htmlContent: any) => {
     return htmlContent.replace(/<h2(.*?)>(.*?)<\/h2>/g, (match: any, p1: any, p2: any) => {
       const id = p2.trim().toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
-      return `<h2${p1} id="${id}">${p2}</h2>`;
+      return `<h2${p1} id="toc-${id}">${p2}</h2>`;
     });
   };
 
@@ -64,7 +64,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     return htmlContent.replace(/<li>(.*?)<\/li>/gs, (match: any, p1: any) => {
       const cleanedContent = p1.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1').trim();
       const slug = cleanedContent.toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
-      return `<li><a href="#${slug}">${cleanedContent}</a></li>`;
+      return `<li><a href="#toc-${slug}">${cleanedContent}</a></li>`;
     });
   };
 
@@ -261,14 +261,14 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                         <div key={index} className="flex gap-5 md:gap-10 border-b border-slate-400 py-5">
                           <div className="flex items-center">
                             <h3>{++index}</h3>
-                            <Link href={`#product_${index}`}><img width={130} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
+                            <Link href={`#toc-product-${index}`}><img width={130} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div className="col-span-1">
                               <span className="text-xs font-semibold border-b border-black">{product.title}</span>
-                              <Link href={`#product_${index}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
+                              <Link href={`#toc-product-${index}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
                               <button className="block md:hidden w-full py-2 md:py-3 mt-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>
-                              <Link href={`#product_${index}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
+                              <Link href={`#toc-product-${index}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
                             </div>
                             <div className="col-span-1 flex-col justify-center items-center hidden md:flex">
                               <button className="w-full py-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>
@@ -296,12 +296,12 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                       index <= 2 && (
                         <div key={index} className="flex gap-5 md:gap-10 border-b border-slate-400 py-5">
                           <div>
-                            <Link href={`#product_${index + 1}`}><img width={140} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
+                            <Link href={`#toc-product-${index + 1}`}><img width={140} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
                           </div>
                           <div>
                             <span className="text-xs font-semibold underline">{product.title}</span>
-                            <Link href={`#product_${index + 1}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
-                            <Link href={`#product_${index + 1}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
+                            <Link href={`#toc-product-${index + 1}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
+                            <Link href={`#toc-product-${index + 1}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
                           </div>
                         </div>
                       )

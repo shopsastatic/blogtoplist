@@ -61,7 +61,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
         {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
           <div className={postContainClass}>
             {postData?.products?.map((item: any, index: number) => (
-              <div key={index} className="box-product product-review-layout container max-w-96 mt-20 mx-0" id={`product_${++index}`}>
+              <div key={index} className="box-product product-review-layout container max-w-96 mt-20 mx-0" id={`toc-product-${++index}`}>
                 <div className="product-overview grid grid-cols-1 lg:grid-cols-2 gap-7">
                   <div className="block lg:hidden">
                     <h3 className="product-index text-center">{index}</h3>
