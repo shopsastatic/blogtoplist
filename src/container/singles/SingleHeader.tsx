@@ -259,17 +259,17 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   <div className="my-7">
                     {productsToShow?.map((product: any, index: any) => (
                       (
-                        <div key={index} className="flex gap-5 md:gap-10 border-b border-slate-400 py-5">
+                        <div key={index} className="flex gap-2 md:gap-10 border-b border-slate-400 py-5">
                           <div className="flex items-center">
-                            <h3>{++index}</h3>
-                            <Link href={`#toc-product-${index}`}><img width={130} className="min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
+                            <h3 className="mr-3">{++index}</h3>
+                            <Link href={`#toc-product-${index}`}><img className="w-44 md:w-[140px] min-w-20 max-w-20 md:min-w-28" src={product.image.node.sourceUrl} alt="" /></Link>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div className="col-span-1">
                               <span className="text-xs font-semibold border-b border-black">{product.title}</span>
                               <Link href={`#toc-product-${index}`}><h4 className="text-2xl mt-3">{product.name}</h4></Link>
                               <button className="block md:hidden w-full py-2 md:py-3 mt-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>
-                              <Link href={`#toc-product-${index}`} className="font-semibold mt-2 block text-lg font-merriweather border-b w-fit border-slate-500">Read more</Link>
+                              <Link href={`#toc-product-${index}`} className="font-semibold mt-2 block text-sm font-merriweather border-b w-fit border-slate-500">Read more</Link>
                             </div>
                             <div className="col-span-1 flex-col justify-center items-center hidden md:flex">
                               <button className="w-full py-3 px-5 text-sm border border-[#00767a] bg-[#00767a] text-white hover:bg-white hover:text-black hover:border-black transition-all">{product?.actionButtons?.[0]?.actionText}</button>

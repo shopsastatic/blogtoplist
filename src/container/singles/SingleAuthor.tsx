@@ -42,10 +42,10 @@ const SingleAuthor: FC<SingleAuthorProps> = ({ author: authorProp }) => {
             <Link href={author?.uri || ""} className="text-sm">{author?.name}</Link>
           </h2>
           <p className="text-sm my-3">{author?.ncUserMeta?.ncBio}</p>
-          <span className="text-sm">
+          <span className="text-sm hidden md:block">
             {author?.description || ""}
           </span>
-          <Link href={author?.uri ?? "/"} className="mt-2 underline block w-fit">
+          <Link href={author?.uri ?? "/"} className="mt-2 underline w-fit hidden md:block">
             <p className="text-sm">Read Full Bio</p>
           </Link>
         </div>
@@ -56,6 +56,9 @@ const SingleAuthor: FC<SingleAuthorProps> = ({ author: authorProp }) => {
           {author?.description || ""}
         </span>
       </div>
+      <Link href={author?.uri ?? "/"} className="mt-2 underline w-fit block md:hidden">
+        <p className="text-sm">Read Full Bio</p>
+      </Link>
     </div>
   );
 };
