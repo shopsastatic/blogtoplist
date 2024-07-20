@@ -2060,7 +2060,7 @@ export type CoreBlock = EditorBlock & PageEditorBlock & PostEditorBlock & {
 export type CoreBlockAttributes = {
   __typename?: 'CoreBlockAttributes';
   /** The &quot;content&quot; field on the &quot;CoreBlockAttributes&quot; block or block attributes */
-  content?: Maybe<Scalars['BlockAttributesObject']['output']>;
+  content: Scalars['BlockAttributesObject']['output'];
   /** The &quot;lock&quot; field on the &quot;CoreBlockAttributes&quot; block or block attributes */
   lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;metadata&quot; field on the &quot;CoreBlockAttributes&quot; block or block attributes */
@@ -4262,6 +4262,8 @@ export type CoreMediaTextAttributes = BlockWithSupportsAnchor & {
   style?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;textColor&quot; field on the &quot;CoreMediaTextAttributes&quot; block or block attributes */
   textColor?: Maybe<Scalars['String']['output']>;
+  /** The &quot;useFeaturedImage&quot; field on the &quot;CoreMediaTextAttributes&quot; block or block attributes */
+  useFeaturedImage: Scalars['Boolean']['output'];
   /** The &quot;verticalAlignment&quot; field on the &quot;CoreMediaTextAttributes&quot; block or block attributes */
   verticalAlignment?: Maybe<Scalars['String']['output']>;
 };
@@ -4335,7 +4337,7 @@ export type CoreMore = EditorBlock & PageEditorBlock & PostEditorBlock & {
 export type CoreMoreAttributes = {
   __typename?: 'CoreMoreAttributes';
   /** The &quot;customText&quot; field on the &quot;CoreMoreAttributes&quot; block or block attributes */
-  customText?: Maybe<Scalars['String']['output']>;
+  customText: Scalars['String']['output'];
   /** The &quot;lock&quot; field on the &quot;CoreMoreAttributes&quot; block or block attributes */
   lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;metadata&quot; field on the &quot;CoreMoreAttributes&quot; block or block attributes */
@@ -6006,8 +6008,6 @@ export type CoreQuote = BlockWithSupportsAnchor & EditorBlock & PageEditorBlock 
 /** Attributes of the CoreQuote Block Type */
 export type CoreQuoteAttributes = BlockWithSupportsAnchor & {
   __typename?: 'CoreQuoteAttributes';
-  /** The &quot;align&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
-  align?: Maybe<Scalars['String']['output']>;
   /** The anchor field for the block. */
   anchor?: Maybe<Scalars['String']['output']>;
   /** The &quot;backgroundColor&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
@@ -6032,6 +6032,8 @@ export type CoreQuoteAttributes = BlockWithSupportsAnchor & {
   metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;style&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
   style?: Maybe<Scalars['BlockAttributesObject']['output']>;
+  /** The &quot;textAlign&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
+  textAlign?: Maybe<Scalars['String']['output']>;
   /** The &quot;textColor&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
   textColor?: Maybe<Scalars['String']['output']>;
   /** The &quot;value&quot; field on the &quot;CoreQuoteAttributes&quot; block or block attributes */
@@ -6394,6 +6396,8 @@ export type CoreSiteTaglineAttributes = {
   fontSize?: Maybe<Scalars['String']['output']>;
   /** The &quot;gradient&quot; field on the &quot;CoreSiteTaglineAttributes&quot; block or block attributes */
   gradient?: Maybe<Scalars['String']['output']>;
+  /** The &quot;level&quot; field on the &quot;CoreSiteTaglineAttributes&quot; block or block attributes */
+  level: Scalars['Float']['output'];
   /** The &quot;lock&quot; field on the &quot;CoreSiteTaglineAttributes&quot; block or block attributes */
   lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
   /** The &quot;metadata&quot; field on the &quot;CoreSiteTaglineAttributes&quot; block or block attributes */
@@ -12189,14 +12193,10 @@ export type PostDataProductsItemLayout = AcfFieldGroup & AcfFieldGroupFields & P
   isSale?: Maybe<Scalars['Boolean']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   name?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
-  price?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   prosCons?: Maybe<PostDataProductsProsCons>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   salePercentage?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;range&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
-  score?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -12222,14 +12222,10 @@ export type PostDataProductsItemLayout_Fields = {
   isSale?: Maybe<Scalars['Boolean']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   name?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
-  price?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   prosCons?: Maybe<PostDataProductsProsCons>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   salePercentage?: Maybe<Scalars['Float']['output']>;
-  /** Field of the &quot;range&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
-  score?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PostDataProductsItemLayout&quot; Field Group */
   title?: Maybe<Scalars['String']['output']>;
 };

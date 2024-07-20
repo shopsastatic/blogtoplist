@@ -1,12 +1,16 @@
+import { gql } from '@/__generated__';
 import React, { useState } from 'react';
-import { FaustPage } from "@faustwp/core";
+import { FaustPage, getNextStaticProps } from "@faustwp/core";
 import PageLayout from "@/container/PageLayout";
 import getTrans from "@/utils/getTrans";
 import { NcgeneralSettingsFieldsFragmentFragment } from "@/__generated__/graphql";
 import "@/styles/newsletter.scss";
 import Link from 'next/link';
+import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu';
+import { GetStaticPropsContext } from 'next';
 
 const Page: FaustPage<any> = (props) => {
+  console.log(props)
   const T = getTrans();
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -85,5 +89,39 @@ const Page: FaustPage<any> = (props) => {
     </>
   );
 };
+
+Page.variables = () => {
+  return {
+    headerLocation: PRIMARY_LOCATION,
+    footerLocation: FOOTER_LOCATION,
+  };
+};
+
+// Note***: tat ca cac query trong cac page deu phai co generalSettings, no duoc su dung o compoent Wrap
+Page.query = gql(`
+  query GetReadingListPage($headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
+    # common query for all page 
+    generalSettings {
+      ...NcgeneralSettingsFieldsFragment
+    }
+    primaryMenuItems: menuItems(where: { location:  $headerLocation  }, first: 80) {
+      nodes {
+        ...NcPrimaryMenuFieldsFragment
+      }
+    }
+    footerMenuItems: menuItems(where: { location:  $footerLocation  }, first: 50) {
+      nodes {
+        ...NcFooterMenuFieldsFragment
+      }
+    }
+  }
+`);
+
+export function getStaticProps(ctx: GetStaticPropsContext) {
+  return getNextStaticProps(ctx, {
+    Page,
+    revalidate: 900,
+  });
+}
 
 export default Page;
