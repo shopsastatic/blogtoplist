@@ -42,7 +42,7 @@ const Category: FaustTemplate<PageCategoryGetCategoryQuery> = (props) => {
 
   const posts = props.data?.category?.posts;
 
-  if(parent) {
+  if(parent || (!categorylayout?.postTemp1 && !categorylayout?.subCategory1 && !categorylayout?.subCategory2 && !categorylayout?.subCategory3 && !categorylayout?.subCategory4  && !categorylayout?.subCategory5)) {
     return (
       <PageLayout
       headerMenuItems={props.data?.primaryMenuItems?.nodes || []}

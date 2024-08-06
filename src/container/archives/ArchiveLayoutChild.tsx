@@ -1,20 +1,6 @@
-import { PageCategoryGetCategoryQuery } from '@/__generated__/graphql'
-import ArchiveFilterListBox from '@/components/ArchiveFilterListBox/ArchiveFilterListBox'
-import Button from '@/components/Button/Button'
-import { TPostCard } from '@/components/Card2/Card2'
-import { CommonTermCardProps, TCategoryCardFull } from '@/components/CardCategory1/CardCategory1'
-import GridPostsArchive from '@/components/GridPostsArchive'
 import LayoutHalfFour from '@/components/LayoutHalfFour'
 import LayoutLineFour from '@/components/LayoutLineFour'
 import LayoutSliceThree from '@/components/LayoutSliceThree'
-import { FILTERS_OPTIONS } from '@/contains/contants'
-import { NC_SITE_SETTINGS } from '@/contains/site-settings'
-import { PostDataFragmentType } from '@/data/types'
-import useGetPostsNcmazMetaByIds from '@/hooks/useGetPostsNcmazMetaByIds'
-import useHandleGetPostsArchivePage from '@/hooks/useHandleGetPostsArchivePage'
-import { FaustTemplate } from '@faustwp/core'
-import { init } from '@graphql-codegen/cli'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 
@@ -47,7 +33,7 @@ const ArchiveLayoutChild: FC<IArchiveLayoutChildProps> = ({
             <div className='mt-10 container'>
                 <h4 className='category-child-title text-center font-semibold uppercase'>{name}</h4>
                 <div className='breadcrumbs flex items-center text-xs gap-1 justify-center my-5'>
-                    <Link href={parent?.node?.uri ?? "/"} className='underline underline-offset-4'>{parent?.node?.name}</Link> {'>'} <p>{name}</p>
+                    <Link href={parent?.node?.uri ?? "/"} className='underline underline-offset-4'>{parent?.node?.name ?? "Home"}</Link> {'>'} <p>{name}</p>
                 </div>
             </div>
             <div className='section-white'></div>
