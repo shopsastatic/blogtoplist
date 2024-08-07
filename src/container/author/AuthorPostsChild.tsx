@@ -41,7 +41,6 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 		posts: (posts?.nodes || []) as TPostCard[],
 	})
 	//
-	console.log(posts)
 
 	const userTyped: any = user;
 
@@ -81,7 +80,7 @@ const AuthorPostsChild: FaustPage<GetAuthorWithPostsQuery> = props => {
 					<span className='block text-center mt-5 font-light font-merriweather'>{userTyped?.description}</span>
 				</div>
 
-				<div className='my-20 container'>
+				<div className='my-20 container !px-0'>
 					<LayoutLineFour data={userTyped?.posts?.nodes}></LayoutLineFour>
 				</div>
 			</PageLayout>
