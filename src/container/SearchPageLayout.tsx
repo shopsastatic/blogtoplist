@@ -95,7 +95,7 @@ const SearchPageLayout: FC<Props> = ({
 			</div>
 			{/* ====================== END HEADER ====================== */}
 
-			<div className="container space-y-16 py-16 lg:space-y-28 lg:pb-28 lg:pt-20">
+			<div className="space-y-16 py-16 lg:space-y-28 lg:pb-28 lg:pt-20">
 				<main>
 					{children}
 				</main>
