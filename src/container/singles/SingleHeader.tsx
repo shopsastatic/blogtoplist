@@ -89,7 +89,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const mainAuthor = postData?.author?.nodes[0]
 
-  if(layoutStyle == "Style 1" || layoutStyle == "Default") {
+  if(layoutStyle == "Style 1" || layoutStyle == "Default" || layoutStyle == "") {
     titleMainClass = "text-center"
   }
 
