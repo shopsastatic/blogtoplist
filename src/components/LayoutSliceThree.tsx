@@ -12,7 +12,7 @@ const LayoutSliceThree: React.FC<LayoutSliceThree> = ({ data }) => {
                 <div className='col-span-2 md:col-span-1' key={index}>
                     <Link href={item?.uri ?? ""}>
                         <div className='grid grid-cols-2 gap-3 items-center'>
-                            <img className='col-span-1' src={item?.featuredImage?.node.sourceUrl} alt={item?.featuredImage?.node?.altText} />
+                            <img className='col-span-1 w-full h-[140px] pre-sm:h-[200px] md:h-[130px] lg:h-[179px] object-cover object-center' src={item?.featuredImage?.node.sourceUrl} alt={item?.featuredImage?.node?.altText} />
                             <span className='block col-span-1 text-md mt-3 font-merriweather'>{item?.title}</span>
                         </div>
                     </Link>

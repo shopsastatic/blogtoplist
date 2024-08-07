@@ -74,6 +74,10 @@ module.exports = {
           900: customColors("--c-neutral-900"),
         },
       },
+      screens: {
+        'pre-xl': '1200px',
+        'pre-sm': '500px',
+      },
     },
   },
   variants: {

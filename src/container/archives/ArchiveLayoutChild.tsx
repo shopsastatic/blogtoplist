@@ -37,39 +37,39 @@ const ArchiveLayoutChild: FC<IArchiveLayoutChildProps> = ({
                 </div>
             </div>
             <div className='section-white'></div>
-            <div className='container my-10'>
+            <div className='my-10 mt-20'>
                 {dataPosts.slice(0, 4).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutHalfFour data={dataPosts?.slice(0, 4)}></LayoutHalfFour>
                     </div>
                 )}
                 {dataPosts.slice(4, 8).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutLineFour data={dataPosts?.slice(4, 8)}></LayoutLineFour>
                     </div>
                 )}
                 {dataPosts.slice(8, 12).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutSliceThree data={dataPosts?.slice(8, 12)}></LayoutSliceThree>
                     </div>
                 )}
                 {dataPosts.slice(12, 16).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutHalfFour data={dataPosts?.slice(12, 16)}></LayoutHalfFour>
                     </div>
                 )}
                 {dataPosts.slice(16, 20).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutSliceThree data={dataPosts?.slice(16, 20)}></LayoutSliceThree>
                     </div>
                 )}
                 {dataPosts.slice(20, 24).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutHalfFour data={dataPosts?.slice(20, 24)}></LayoutHalfFour>
                     </div>
                 )}
                 {dataPosts.slice(24, 28).length > 0 && (
-                    <div className='my-20'>
+                    <div className='my-0 md:my-20'>
                         <LayoutSliceThree data={dataPosts?.slice(24, 28)}></LayoutSliceThree>
                     </div>
                 )}

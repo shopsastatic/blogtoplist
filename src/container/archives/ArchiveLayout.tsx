@@ -129,10 +129,10 @@ const ArchiveLayout: FC<any> = ({
 					</div>
 
 					{category1?.posts?.nodes?.length > 0 && (
-						<div className='curated-section bg-white py-10'>
+						<div className='curated-section bg-white py-0 md:py-10'>
 							<Link href={category1?.uri ?? "/"} className='block w-fit m-auto'><h2 className='text-hover-effect text-black text-center'>{category1?.name}</h2></Link>
 							<div className="container grid grid-cols-5 mt-10 gap-5 !pb-10">
-								<div className="curated-main-image col-span-5 md:col-span-3 text-black">
+								<div className="curated-main-image col-span-5 md:col-span-3 text-black mb-10 md:mb-0">
 									<Link href={category1?.posts?.nodes[0]?.uri ?? ""}>
 										<img src={category1?.posts?.nodes[0]?.featuredImage?.node?.sourceUrl} alt="" />
 										<h3 className='text-hover-effect text-center mt-10'>{category1?.posts?.nodes[0].title}</h3>
@@ -143,7 +143,7 @@ const ArchiveLayout: FC<any> = ({
 										<Link key={index} href={item?.uri ?? ""}>
 											<div className='grid grid-cols-6 gap-3 items-center'>
 												{item.featuredImage && item.featuredImage.node && (
-													<img className='col-span-2' src={item.featuredImage.node.sourceUrl} alt="" />
+													<img className='col-span-2 w-full h-[100px] pre-sm:h-[180px] md:h-[100px] lg:h-[143px] object-cover object-center' src={item.featuredImage.node.sourceUrl} alt="" />
 												)}
 												<span className='text-hover-effect col-span-4 font-merriweather'>{item.title}</span>
 											</div>
@@ -161,7 +161,7 @@ const ArchiveLayout: FC<any> = ({
 							<div className='col-span-1 md:col-span-5 order-2 md:order-1'>
 								<Link href={post1?.uri ?? "/"}>
 									<img className='m-auto' src={post1?.featuredImage?.node.sourceUrl} alt="" />
-									<h4 className='text-hover-effect text-4xl md:text-5xl text-center mt-14 leading-none'>{post1?.title}</h4>
+									<h4 className='text-hover-effect text-4xl md:text-5xl text-center mt-5 md:mt-14 leading-none'>{post1?.title}</h4>
 								</Link>
 							</div>
 							<div className='col-span-1 md:col-span-2 order-1 md:order-2'>
@@ -180,7 +180,7 @@ const ArchiveLayout: FC<any> = ({
 									{category2?.posts?.nodes.map((item: any, index: number) => (
 										<div className='col-span-2 md:col-span-1' key={index}>
 											<Link href={item.uri}>
-												<img src={item.featuredImage?.node.sourceUrl} alt="" />
+												<img src={item.featuredImage?.node.sourceUrl} className='w-full h-[140px] pre-sm:h-[250px] md:h-[200px] pre-xl:h-[270px] object-cover object-center' alt="" />
 												<span className='block text-md font-merriweather text-center mt-3'>{item?.title}</span>
 											</Link>
 										</div>
@@ -218,7 +218,7 @@ const ArchiveLayout: FC<any> = ({
 											{category4?.posts?.nodes.map((item: any, index: number) => (
 												<Link className='col-span-1' href={item?.uri ?? ""} key={index}>
 													<div>
-														<img width={'100%'} src={item?.featuredImage?.node.sourceUrl} alt="" />
+														<img className='w-full h-[140px] pre-sm:h-[250px] lg:h-[400px] object-cover object-center' src={item?.featuredImage?.node.sourceUrl} alt="" />
 														<p className='text-md font-merriweather text-center mt-3 leading-7'>{item?.title}</p>
 													</div>
 												</Link>
@@ -241,12 +241,12 @@ const ArchiveLayout: FC<any> = ({
 							<div className='posts-layout-1 mb-10'>
 								<Link href={category5?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category5?.name}</h4></Link>
 								<Link href={category5?.posts?.nodes[0].uri ?? ""}>
-									<div className='md:container grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 mb-14 items-center'>
+									<div className='md:container !max-w-full md:!max-w-[1300px] grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 mb-14 items-center'>
 										<div className='px-5 md:px-0 col-span-1 order-2 md:order-1'>
 											<h4 className='text-hover-effect text-4xl md:text-5xl leading-none font-semibold'>{category5?.posts?.nodes[0].title}</h4>
 										</div>
 										<div className='col-span-1 order-1 md:order-2'>
-											<img className='sticky top-20 border-l-8 border-r-8 border-y-2 border-black' src={category5?.posts?.nodes[0].featuredImage.node.sourceUrl} alt="" />
+											<img className='sticky top-20 w-full md:h-[400px] lg:h-[598px] object-cover object-center border-l-8 border-r-8 border-y-2 border-black' src={category5?.posts?.nodes[0].featuredImage.node.sourceUrl} alt="" />
 										</div>
 									</div>
 								</Link>

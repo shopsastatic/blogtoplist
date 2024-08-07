@@ -167,8 +167,8 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
         )}
 
         {footer_category.slice(0, 4).length > 0 && (
-          <div className="footer-category container mt-28">
-            <Link href={categoriesTyped?.nodes?.[0]?.uri ?? "/"} className="block w-fit my-14">
+          <div className="footer-category mt-28">
+            <Link href={categoriesTyped?.nodes?.[0]?.uri ?? "/"} className="mx-3 block w-fit my-14">
               <h3>{categoriesTyped?.nodes?.[0]?.name ?? ""}</h3>
             </Link>
 
