@@ -88,9 +88,8 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
   const mainAuthor = postData?.author?.nodes[0]
-  console.log(mainAuthor)
 
-  if (layoutStyle == "Style 1") {
+  if(layoutStyle == "Style 1" || layoutStyle == "Default") {
     titleMainClass = "text-center"
   }
 
@@ -137,11 +136,21 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   return (
     <>
-      {layoutStyle == "Style 1" && (
+      {layoutStyle != "Style 2" && (
         <>
-          <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
+          {layoutStyle == "Style 1" && (
+            <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
+          )}
           <div className="container">
             <div className="my-5 flex gap-1 items-center justify-center">
+              {categories?.nodes?.length == 1 && (
+                <>
+                  <Link href={"/"}>
+                    <span className="text-xs font-normal underline underline-offset-4">Home</span>
+                  </Link>
+                  <span className="text-xs font-normal mt-1">{">"}</span>
+                </>
+              )}
               {categories?.nodes && categories.nodes.map((product: any, index: any) => (
                 <React.Fragment key={index}>
                   <Link href={product.uri ?? "/"}>
@@ -183,9 +192,11 @@ const SingleHeader: FC<SingleHeaderProps> = ({
               </div>
             </div>
 
-            <Link href={"#toc-product-1"} className="w-fit block m-auto">
-              <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
-            </Link>
+            {layoutStyle == "Style 1" && (
+              <Link href={"#toc-product-1"} className="w-fit block m-auto">
+                <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
+              </Link>
+            )}
           </div>
         </>
       )}
