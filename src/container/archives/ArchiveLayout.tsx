@@ -240,7 +240,7 @@ const ArchiveLayout: FC<any> = ({
 
 							<div className='posts-layout-1 mb-10'>
 								<Link href={category5?.uri ?? "/"} className='block w-fit m-auto'><h4 className='sub-category-title text-hover-effect text-center'>{category5?.name}</h4></Link>
-								<Link href={category5?.posts?.nodes[0].uri ?? ""}>
+								<Link className='block w-fit m-auto' href={category5?.posts?.nodes[0].uri ?? ""}>
 									<div className='md:container !max-w-full md:!max-w-[1300px] grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 mb-14 items-center'>
 										<div className='px-5 md:px-0 col-span-1 order-2 md:order-1'>
 											<h4 className='text-hover-effect text-4xl md:text-5xl leading-none font-semibold'>{category5?.posts?.nodes[0].title}</h4>
