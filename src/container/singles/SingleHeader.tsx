@@ -67,7 +67,7 @@ const useEnsureMenuContentClass = (updatedContent: string) => {
 
         menuContentDiv.appendChild(ulElement);
 
-        h2Elements[0].parentNode.insertBefore(menuContentDiv, h2Elements[0]);
+        h2Elements?.[0]?.parentNode?.insertBefore(menuContentDiv, h2Elements[0]);
       }
     }
 
