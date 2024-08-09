@@ -128,16 +128,25 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const featuredImageTyped: any = featuredImage;
 
-  const paragraphs = updatedContent.split('</p>');
-  const numParagraphs = paragraphs.length;
-  const firstPart = paragraphs.slice(0, numParagraphs - 2).join('</p>') + '</p>';
-  const lastPart = paragraphs[numParagraphs - 2];
+  const h2Regex = /<h2\b[^>]*>/gi;
+  const matches = [...updatedContent.matchAll(h2Regex)];
+
+  const lastH2Index = matches[matches.length - 1].index;
+
+  let firstPart = updatedContent.slice(0, lastH2Index);
+  
+  let lastPart = updatedContent.slice(lastH2Index);
+  
+  const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
   const dataProducts = postData?.products
   const headlineDesc = postData?.headlineDesc
-  const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
   const mainAuthor = postData?.author?.nodes[0]
+
+  if(layoutStyle != "Style 1" && layoutStyle != "Style 2") {
+    firstPart = firstPart + lastPart
+  }
 
   if (layoutStyle == "Style 1" || layoutStyle != "Style 2") {
     titleMainClass = "text-center"
@@ -312,7 +321,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             {!hiddenDesc && (
               <>
                 <div
-                  dangerouslySetInnerHTML={{ __html: (layoutStyle == "Style 1" || layoutStyle == "Style 2") ? firstPart?.trim() : firstPart?.trim() + lastPart?.trim() }}
+                  dangerouslySetInnerHTML={{ __html: firstPart.trim() }}
                   className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                 ></div>
 
