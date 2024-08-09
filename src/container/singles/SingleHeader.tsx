@@ -31,6 +31,52 @@ function formatDate(dateString: any) {
   return formattedDate;
 }
 
+const useEnsureMenuContentClass = (updatedContent: string) => {
+  const [content, setContent] = useState<string>(updatedContent);
+
+  useEffect(() => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = updatedContent;
+
+    if (tempDiv.querySelector('.menu-content') === null) {
+      const h2Elements = tempDiv.querySelectorAll('h2');
+
+      if (h2Elements.length > 0) {
+        const menuContentDiv = document.createElement('div');
+        menuContentDiv.className = 'menu-content';
+
+        const h4Element = document.createElement('h4');
+        h4Element.textContent = 'JUMP TO:';
+        menuContentDiv.appendChild(h4Element);
+
+        const ulElement = document.createElement('ul');
+
+        h2Elements.forEach((h2) => {
+          const h2Text = h2.textContent || h2.innerText;
+          const slug = h2Text.toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
+
+          const liElement = document.createElement('li');
+          const aElement = document.createElement('a');
+          aElement.href = `#toc-${slug}`;
+          aElement.textContent = h2Text;
+          liElement.appendChild(aElement);
+          ulElement.appendChild(liElement);
+
+          h2.id = "toc-" + slug;
+        });
+
+        menuContentDiv.appendChild(ulElement);
+
+        h2Elements[0].parentNode.insertBefore(menuContentDiv, h2Elements[0]);
+      }
+    }
+
+    setContent(tempDiv.innerHTML);
+  }, [updatedContent]);
+
+  return content;
+};
+
 const SingleHeader: FC<SingleHeaderProps> = ({
   titleMainClass,
   hiddenDesc = false,
@@ -61,10 +107,12 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
 
   const addAnchorTagsToLi = (htmlContent: any) => {
-    return htmlContent.replace(/<li>(.*?)<\/li>/gs, (match: any, p1: any) => {
-      const cleanedContent = p1.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1').trim();
-      const slug = cleanedContent.toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
-      return `<li><a href="#toc-${slug}">${cleanedContent}</a></li>`;
+    return htmlContent.replace(/<div class="menu-content">([\s\S]*?)<\/div>/g, (match: any) => {
+      return match.replace(/<li>(.*?)<\/li>/gs, (liMatch: any, p1: any) => {
+        const cleanedContent = p1.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1').trim();
+        const slug = cleanedContent.toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
+        return `<li><a href="#toc-${slug}">${cleanedContent}</a></li>`;
+      });
     });
   };
 
@@ -74,7 +122,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     return updatedContent;
   };
 
-  const updatedContent = processHtmlContent(content);
+  let updatedContent = processHtmlContent(content);
+
+  updatedContent = useEnsureMenuContentClass(updatedContent);
 
   const featuredImageTyped: any = featuredImage;
 
@@ -89,7 +139,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const mainAuthor = postData?.author?.nodes[0]
 
-  if(layoutStyle == "Style 1" || layoutStyle != "Style 2") {
+  if (layoutStyle == "Style 1" || layoutStyle != "Style 2") {
     titleMainClass = "text-center"
   }
 
@@ -136,7 +186,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   return (
     <>
-      {layoutStyle != "Style 2" && (
+      {layoutStyle == "Style 1" && (
         <>
           {layoutStyle == "Style 1" && (
             <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
