@@ -132,10 +132,14 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const matches = [...updatedContent.matchAll(h2Regex)];
 
   const lastH2Index = matches[matches.length - 1]?.index;
+  let firstPart = updatedContent
+  let lastPart = ""
 
-  let firstPart = updatedContent.slice(0, lastH2Index);
+  if(lastH2Index) {
+    firstPart = updatedContent.slice(0, lastH2Index);
+    lastPart = updatedContent.slice(lastH2Index);
+  }
   
-  let lastPart = updatedContent.slice(lastH2Index);
   
   const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
