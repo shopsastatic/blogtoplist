@@ -124,7 +124,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   let updatedContent = processHtmlContent(content);
 
-  updatedContent = useEnsureMenuContentClass(updatedContent);
+  updatedContent = useEnsureMenuContentClass(updatedContent)
 
   const featuredImageTyped: any = featuredImage;
 
