@@ -131,7 +131,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const h2Regex = /<h2\b[^>]*>/gi;
   const matches = [...updatedContent.matchAll(h2Regex)];
 
-  const lastH2Index = matches[matches.length - 1].index;
+  const lastH2Index = matches[matches.length - 1]?.index;
 
   let firstPart = updatedContent.slice(0, lastH2Index);
   

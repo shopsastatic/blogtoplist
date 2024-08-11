@@ -19,8 +19,6 @@ const SingleAuthor: FC<SingleAuthorProps> = ({ author: authorProp }) => {
     authorProp as FragmentType<typeof NC_USER_FULL_FIELDS_FRAGMENT>
   );
 
-  console.log(author)
-
   const T = getTrans();
   return (
     <div className="nc-SingleAuthor">
