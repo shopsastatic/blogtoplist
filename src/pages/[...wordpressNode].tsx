@@ -2,55 +2,64 @@ import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
 import { GetStaticProps } from "next";
 import { WordPressTemplateProps } from "../types";
 
+const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL?.replace(/\/$/, "") + "/wp-json/wp/v2";
+
+async function fetchAllItems(endpoint: string) {
+  let page = 1;
+  let allItems: any;
+  let hasMore = true;
+  while (hasMore) {
+    try {
+      const response = await fetch(`${endpoint}&page=${page}&per_page=100`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const items = await response.json();
+      if (items.length === 0) {
+        hasMore = false;
+      } else {
+        allItems = [...allItems, ...items];
+        page++;
+      }
+    } catch (error) {
+      console.error(`Error fetching data from ${endpoint}:`, error);
+      hasMore = false;
+    }
+  }
+  return allItems;
+}
+
 export default function Page(props: WordPressTemplateProps) {
   return <WordPressTemplate {...props} />;
 }
 
-export async function myGetPaths() {
-  const response = await fetch(
-    process.env.NEXT_PUBLIC_WORDPRESS_URL?.replace(/\/$/, "") +
-      "/wp-json/wp/v2/posts?per_page=50&_fields=slug"
-  );
-  const getAllCategories = await fetch(
-    process.env.NEXT_PUBLIC_WORDPRESS_URL?.replace(/\/$/, "") +
-      "/wp-json/wp/v2/categories?per_page=20&_fields=slug"
-  );
-
-  let posts = (await response.json()) as any[];
-  let categories = (await getAllCategories.json()) as any[];
-
-  if (!categories?.length) {
-    categories = [{ slug: "uncategorized" }];
-  }
-  if (!posts?.length) {
-    posts = [{ slug: "hello-world" }];
-  }
-
-  posts = [
-    ...categories.map((category) => ({ slug: "/" + category.slug })),
-    ...posts,
-    { slug: "home-2" },
-    { slug: "home-3-podcast" },
-    { slug: "home-4-video" },
-    { slug: "home-5-gallery" },
-    { slug: "home-6" },
-    { slug: "search/posts/" },
-  ];
-
-  return posts.map((page) => ({
-    params: { wordpressNode: [page.slug] },
-  }));
-}
-
 export async function getStaticPaths() {
-  const paths = await myGetPaths();
+  try {
+    const posts = await fetchAllItems(`${WP_API_URL}/posts?_fields=slug`);
+    const categories = await fetchAllItems(`${WP_API_URL}/categories?_fields=slug`);
 
-  return {
-    paths,
-    fallback: "blocking",
-  };
+    const staticPages = ['home-2', 'home-3-podcast', 'home-4-video', 'home-5-gallery', 'home-6'];
+    const paths = [
+      ...categories.map((category: any) => ({ params: { wordpressNode: [category.slug] } })),
+      ...posts.map((post: any) => ({ params: { wordpressNode: [post.slug] } })),
+      ...staticPages.map(page => ({ params: { wordpressNode: [page] } })),
+      { params: { wordpressNode: ['search', 'posts'] } },
+    ];
+
+    return {
+      paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return { paths: [], fallback: "blocking" };
+  }
 }
 
-export const getStaticProps: GetStaticProps = (ctx) => {
-  return getWordPressProps({ ctx, revalidate: 900 });
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  try {
+    const props = await getWordPressProps({ ctx, revalidate: 900 });
+    return props;
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+    return { notFound: true };
+  }
 };
