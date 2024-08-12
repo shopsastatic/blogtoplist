@@ -313,7 +313,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             </div>
           )}
 
-          <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
+          {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
+            <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
+          )}
 
           <div className="container">
             {layoutStyle == "Style 2" && (
