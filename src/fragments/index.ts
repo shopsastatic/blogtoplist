@@ -274,6 +274,11 @@ export const NC_POST_FULL_FRAGMENT = gql(/* GraphQL */ `
 				}
 			}
 		}
+		seo {
+			metaDesc
+			metaKeywords
+			title
+		}
 		content
 		author {
 			node {
