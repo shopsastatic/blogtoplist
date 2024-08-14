@@ -148,11 +148,11 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const mainAuthor = postData?.author?.nodes[0]
 
-  if(layoutStyle != "Style 1" && layoutStyle != "Style 2") {
+  if(layoutStyle != "Comparison" && layoutStyle != "Information") {
     firstPart = firstPart + lastPart
   }
 
-  if (layoutStyle == "Style 1" || layoutStyle != "Style 2") {
+  if (layoutStyle == "Comparison" || layoutStyle != "Information") {
     titleMainClass = "text-center"
   }
 
@@ -199,9 +199,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   return (
     <>
-      {layoutStyle == "Style 1" && (
+      {layoutStyle == "Comparison" && (
         <>
-          {layoutStyle == "Style 1" && (
+          {layoutStyle == "Comparison" && (
             <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
           )}
           <div className="container">
@@ -255,7 +255,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
               </div>
             </div>
 
-            {layoutStyle == "Style 1" && (
+            {layoutStyle == "Comparison" && (
               <Link href={"#toc-product-1"} className="w-fit block m-auto">
                 <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
               </Link>
@@ -267,7 +267,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-4 lg:space-y-5">
-          {layoutStyle == "Style 2" && (
+          {layoutStyle == "Information" && (
             <div className="container">
               <div className="mb-10 flex gap-1 items-center">
                 {categories?.nodes && categories.nodes.map((product: any, index: any) => (
@@ -313,12 +313,12 @@ const SingleHeader: FC<SingleHeaderProps> = ({
             </div>
           )}
 
-          {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
+          {(layoutStyle == "Comparison" || layoutStyle == "Information") && (
             <img className="container single-featured-image" width={'100%'} src={featuredImageTyped?.sourceUrl} alt={featuredImageTyped?.altText} />
           )}
 
           <div className="container">
-            {layoutStyle == "Style 2" && (
+            {layoutStyle == "Information" && (
               <div className="editor-text mb-5">
                 <p className="text-center text-xs">Every item on this page was chosen by an LULUNE editor. We may earn commission on some of the items you choose to buy.</p>
               </div>
@@ -331,7 +331,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"
                 ></div>
 
-                {layoutStyle == "Style 1" && (
+                {layoutStyle == "Comparison" && (
                   <div className="my-7">
                     {productsToShow?.map((product: any, index: any) => (
                       (
@@ -367,7 +367,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   </div>
                 )}
 
-                {layoutStyle == "Style 2" && (
+                {layoutStyle == "Information" && (
                   <div className="my-7">
                     {dataProducts && dataProducts.slice(0, 3).map((product: any, index: any) => (
                       index <= 2 && (
@@ -386,7 +386,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                   </div>
                 )}
 
-                {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
+                {(layoutStyle == "Comparison" || layoutStyle == "Information") && (
                   <div
                     dangerouslySetInnerHTML={{ __html: lastPart?.trim() }}
                     className="post-intro-content text-base text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-md"

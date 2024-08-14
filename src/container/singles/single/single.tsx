@@ -40,9 +40,9 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   const imgHeight = featuredImage?.mediaDetails?.height || 750;
   let postContainClass = "";
 
-  if (layoutStyle == "Style 1") {
+  if (layoutStyle == "Comparison") {
     postContainClass = "post-style-1"
-  } else if (layoutStyle == "Style 2") {
+  } else if (layoutStyle == "Information") {
     postContainClass = "post-style-2"
   } else {
     postContainClass = "post-style-1"
@@ -51,7 +51,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   return (
     <>
       <div className="section-white"></div>
-      <div className={`nc-PageSingle ${layoutStyle == "Style 2" ? "pt-8 lg:pt-16" : ""}`}>
+      <div className={`nc-PageSingle ${layoutStyle == "Information" ? "pt-8 lg:pt-16" : ""}`}>
         <header className="rounded-xl">
           <div className={!hasFeaturedImage && showRightSidebar ? "" : `max-w-[1140px] mx-auto`}>
             <SingleHeader post={{ ...post }} />
@@ -59,7 +59,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
           </div>
         </header>
 
-        {(layoutStyle == "Style 1" || layoutStyle == "Style 2") && (
+        {(layoutStyle == "Comparison" || layoutStyle == "Information") && (
           <div className={postContainClass}>
             {postData?.products?.map((item: any, index: number) => (
               <div key={index} className="box-product product-review-layout container max-w-96 mt-20 mx-0" id={`toc-product-${++index}`}>
