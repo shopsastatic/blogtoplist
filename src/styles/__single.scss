@@ -203,6 +203,11 @@
 
 .post-intro-content table {
   width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
 }
 
 .post-intro-content table th, .post-intro-content table td {
@@ -403,6 +408,10 @@
 
   .watch-next h3 {
     font-size: 38px;
+  }
+
+  .post-intro-content table {
+    display: block;
   }
 }
 
