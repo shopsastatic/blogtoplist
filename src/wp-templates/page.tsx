@@ -71,7 +71,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
         }
       >
         <div className="section-white"></div>
-        <div className={`nc-PageSingle pt-8 lg:pt-16`}>
+        <div className={`pt-8`}>
           <header className="rounded-xl">
             <div
               className="mx-auto"

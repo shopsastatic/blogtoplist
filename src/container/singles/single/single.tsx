@@ -51,7 +51,7 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   return (
     <>
       <div className="section-white"></div>
-      <div className={`nc-PageSingle ${layoutStyle == "Information" ? "pt-8 lg:pt-16" : ""}`}>
+      <div className={`nc-PageSingle ${layoutStyle == "Information" || layoutStyle == "" || layoutStyle == "Default" ? "pt-8" : ""}`}>
         <header className="rounded-xl">
           <div className={!hasFeaturedImage && showRightSidebar ? "" : `max-w-[1140px] mx-auto`}>
             <SingleHeader post={{ ...post }} />

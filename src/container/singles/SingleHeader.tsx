@@ -267,7 +267,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-4 lg:space-y-5">
-          {layoutStyle == "Information" && (
+          {layoutStyle == "Comparison" && (
             <div className="container">
               <div className="mb-10 flex gap-1 items-center">
                 {categories?.nodes && categories.nodes.map((product: any, index: any) => (
@@ -318,7 +318,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
           )}
 
           <div className="container">
-            {layoutStyle == "Information" && (
+            {layoutStyle == "Comparison" && (
               <div className="editor-text mb-5">
                 <p className="text-center text-xs">Every item on this page was chosen by an LULUNE editor. We may earn commission on some of the items you choose to buy.</p>
               </div>
