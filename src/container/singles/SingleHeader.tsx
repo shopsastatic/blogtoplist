@@ -135,12 +135,12 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   let firstPart = updatedContent
   let lastPart = ""
 
-  if(lastH2Index) {
+  if (lastH2Index) {
     firstPart = updatedContent.slice(0, lastH2Index);
     lastPart = updatedContent.slice(lastH2Index);
   }
-  
-  
+
+
   const layoutStyle = postData?.layoutStyle && postData?.layoutStyle[0]
 
   const dataProducts = postData?.products
@@ -148,7 +148,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   const mainAuthor = postData?.author?.nodes[0]
 
-  if(layoutStyle != "Comparison" && layoutStyle != "Information") {
+  if (layoutStyle != "Comparison" && layoutStyle != "Information") {
     firstPart = firstPart + lastPart
   }
 
@@ -199,70 +199,68 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
   return (
     <>
-      {layoutStyle == "Comparison" && (
-        <>
-          {layoutStyle == "Comparison" && (
-            <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
-          )}
-          <div className="container">
-            <div className="my-5 flex gap-1 items-center justify-center">
-              {categories?.nodes?.length == 1 && (
-                <>
-                  <Link href={"/"}>
-                    <span className="text-xs font-normal underline underline-offset-4">Home</span>
-                  </Link>
+      <>
+        {layoutStyle == "Comparison" && (
+          <p className="text-xs text-center py-3 border-y border-y-slate-200 px-4">We earn a commission for products purchased through some links in this article.</p>
+        )}
+        <div className="container">
+          <div className="my-5 flex gap-1 items-center justify-center">
+            {categories?.nodes?.length == 1 && (
+              <>
+                <Link href={"/"}>
+                  <span className="text-xs font-normal underline underline-offset-4">Home</span>
+                </Link>
+                <span className="text-xs font-normal mt-1">{">"}</span>
+              </>
+            )}
+            {categories?.nodes && categories.nodes.map((product: any, index: any) => (
+              <React.Fragment key={index}>
+                <Link href={product.uri ?? "/"}>
+                  <span className="text-xs font-normal underline underline-offset-4">{product.name}</span>
+                </Link>
+                {categories?.nodes && index < categories.nodes.length - 1 && (
                   <span className="text-xs font-normal mt-1">{">"}</span>
-                </>
-              )}
-              {categories?.nodes && categories.nodes.map((product: any, index: any) => (
-                <React.Fragment key={index}>
-                  <Link href={product.uri ?? "/"}>
-                    <span className="text-xs font-normal underline underline-offset-4">{product.name}</span>
-                  </Link>
-                  {categories?.nodes && index < categories.nodes.length - 1 && (
-                    <span className="text-xs font-normal mt-1">{">"}</span>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
 
 
-            <SingleTitle mainClass={titleMainClass} title={title || ""} />
-            <div className="my-5">
-              <h5 className="headline_desc italic text-center">{headlineDesc}</h5>
-            </div>
-            <div className="header-author m-auto">
-              {author && (
-                <p className="flex items-center justify-center flex-wrap gap-0 md:gap-5 mb-5 md:mb-0"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
-              )}
-            </div>
-            <div className="article-share-icon flex items-center justify-center w-full gap-3 text-sm font-semibold my-4">
-              <div className="share-icon facebook relative group" onClick={linkToF}>
-                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/facebook-icon.png" alt="Facebook Icon" />
-                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/facebook-icon-white.png" alt="Facebook Icon White" />
-              </div>
-              <div className="share-icon x group" onClick={linkToX}>
-                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/x-icon.png" alt="X Icon" />
-                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/x-icon-white.png" alt="X Icon White" />
-              </div>
-              <div className="share-icon whatsapp group" onClick={linkToW}>
-                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/whatsapp-icon.png" alt="Whatsapp Icon" />
-                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/whatsapp-icon-white.png" alt="Whatsapp Icon White" />
-              </div>
-              <div className="share-icon mail group" onClick={linkToM}>
-                <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/mail-icon.png" alt="Mail Icon" />
-                <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/mail-icon-white.png" alt="Mail Icon White" />
-              </div>
-            </div>
-
-            {layoutStyle == "Comparison" && (
-              <Link href={"#toc-product-1"} className="w-fit block m-auto">
-                <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
-              </Link>
+          <SingleTitle mainClass={titleMainClass} title={title || ""} />
+          <div className="my-5">
+            <h5 className="headline_desc italic text-center">{headlineDesc}</h5>
+          </div>
+          <div className="header-author m-auto">
+            {author && (
+              <p className="flex items-center justify-center flex-wrap gap-0 md:gap-5 mb-5 md:mb-0"><span>BY <Link href={author?.uri ?? "/"} className="underline underline-offset-2">{author?.name}</Link></span> PUBLISHED: {formatDate(date)}</p>
             )}
           </div>
-        </>
-      )}
+          <div className="article-share-icon flex items-center justify-center w-full gap-3 text-sm font-semibold my-4">
+            <div className="share-icon facebook relative group" onClick={linkToF}>
+              <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/facebook-icon.png" alt="Facebook Icon" />
+              <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/facebook-icon-white.png" alt="Facebook Icon White" />
+            </div>
+            <div className="share-icon x group" onClick={linkToX}>
+              <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/x-icon.png" alt="X Icon" />
+              <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/x-icon-white.png" alt="X Icon White" />
+            </div>
+            <div className="share-icon whatsapp group" onClick={linkToW}>
+              <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/whatsapp-icon.png" alt="Whatsapp Icon" />
+              <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/whatsapp-icon-white.png" alt="Whatsapp Icon White" />
+            </div>
+            <div className="share-icon mail group" onClick={linkToM}>
+              <img className="cursor-pointer max-w-5 block group-hover:hidden" src="/images/posts/mail-icon.png" alt="Mail Icon" />
+              <img className="cursor-pointer max-w-5 hidden group-hover:block" src="/images/posts/mail-icon-white.png" alt="Mail Icon White" />
+            </div>
+          </div>
+
+          {layoutStyle == "Comparison" && (
+            <Link href={"#toc-product-1"} className="w-fit block m-auto">
+              <button className="border m-auto block border-black p-2 text-sm font-medium mb-3">Jump to Products</button>
+            </Link>
+          )}
+        </div>
+      </>
 
 
       <div className={`nc-SingleHeader ${className}`}>
