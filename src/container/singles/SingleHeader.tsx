@@ -152,7 +152,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     firstPart = firstPart + lastPart
   }
 
-  if (layoutStyle == "Comparison" || layoutStyle != "Information") {
+  if (layoutStyle == "Comparison" || layoutStyle != "Information" || layoutStyle != "Default") {
     titleMainClass = "text-center"
   }
 
