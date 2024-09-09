@@ -152,9 +152,9 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     firstPart = firstPart + lastPart
   }
 
-  if (layoutStyle == "Comparison" || layoutStyle != "Information" || layoutStyle != "Default") {
-    titleMainClass = "text-center"
-  }
+  titleMainClass = "text-center"
+  // if (layoutStyle == "Comparison" || layoutStyle != "Information" || layoutStyle != "Default") {
+  // }
 
   const getCurrentDomain = () => {
     if (typeof window !== 'undefined') {
